@@ -13,6 +13,7 @@ namespace Digimon.Digimon.Scripts.Applications.Installer.Domain
             builder.Register<MonsterTypeEntity>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
             builder.Register<ScreenEntity>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
             builder.Register<StatusEntity>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
+            builder.Register<MessageEntity>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
 
             builder.Register<CommandUseCase>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
         }
