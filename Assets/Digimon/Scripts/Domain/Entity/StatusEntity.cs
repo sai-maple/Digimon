@@ -42,6 +42,11 @@ namespace Digimon.Digimon.Scripts.Domain.Entity
             return _skillLevel.Zip(_skillLevel.Skip(1), (previous, current) => (previous, current));
         }
 
+        public void Plus(int[] status)
+        {
+            Plus(status[0], status[1], status[2], status[3], status[4]);
+        }
+        
         public void Plus(int hp = 0, int atk = 0, int def = 0, int speed = 0, int skillLevel = 0)
         {
             _bonusHp.Value += hp;
