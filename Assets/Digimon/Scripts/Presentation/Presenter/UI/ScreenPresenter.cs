@@ -35,7 +35,7 @@ namespace Digimon.Digimon.Scripts.Presentation.Presenter.UI
                     {
                         _screenBase.DismissAsync().Forget();
                     }
-                });
+                }).AddTo(_disposable);
         }
 
         public void Dispose()
