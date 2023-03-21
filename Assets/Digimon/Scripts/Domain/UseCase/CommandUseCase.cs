@@ -1,7 +1,7 @@
 using System.Linq;
 using Digimon.Digimon.Scripts.Domain.Entity;
 
-namespace Digimon.Digimon.Scripts.Domain
+namespace Digimon.Digimon.Scripts.Domain.UseCase
 {
     public sealed class CommandUseCase
     {
