@@ -4,7 +4,8 @@ using UnityEngine;
 
 namespace Digimon.Digimon.Scripts.Presentation.View.UI
 {
-    public abstract class ScreenBase : MonoBehaviour
+    [RequireComponent(typeof(CanvasGroup))]
+    public class ScreenView : MonoBehaviour
     {
         [SerializeField] private Vector3 from;
         [SerializeField] private Vector3 to;
@@ -43,6 +44,11 @@ namespace Digimon.Digimon.Scripts.Presentation.View.UI
             var tween = transform.DOLocalMove(from, 0.5f).WithCancellation(token);
             var fade = canvasGroup.DOFade(0, 0.5f).WithCancellation(token);
             await UniTask.WhenAll(tween, fade);
+        }
+
+        private void Reset()
+        {
+            canvasGroup = GetComponent<CanvasGroup>();
         }
     }
 }

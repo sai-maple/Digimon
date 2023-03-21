@@ -10,15 +10,15 @@ namespace Digimon.Digimon.Scripts.Presentation.Presenter.UI
     public sealed class ScreenPresenter : IInitializable, IDisposable
     {
         private readonly ScreenEntity _screenEntity;
-        private readonly ScreenBase _screenBase;
+        private readonly ScreenView _screenView;
         private readonly Screens _screens;
 
         private readonly CompositeDisposable _disposable = new();
 
-        public ScreenPresenter(ScreenEntity screenEntity, ScreenBase screenBase, Screens screens)
+        public ScreenPresenter(ScreenEntity screenEntity, ScreenView screenView, Screens screens)
         {
             _screenEntity = screenEntity;
-            _screenBase = screenBase;
+            _screenView = screenView;
             _screens = screens;
         }
 
@@ -29,11 +29,11 @@ namespace Digimon.Digimon.Scripts.Presentation.Presenter.UI
                 {
                     if (screen == _screens)
                     {
-                        _screenBase.PresentAsync().Forget();
+                        _screenView.PresentAsync().Forget();
                     }
                     else
                     {
-                        _screenBase.DismissAsync().Forget();
+                        _screenView.DismissAsync().Forget();
                     }
                 }).AddTo(_disposable);
         }

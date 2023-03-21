@@ -57,7 +57,7 @@ namespace Digimon.Digimon.Scripts.Domain.Entity
         }
 
         // 初日や対戦に敗北後、成長分を1/10に
-        public void Barth()
+        public void Lose()
         {
             _bonusHp.Value /= 10;
             _bonusAtk.Value /= 10;

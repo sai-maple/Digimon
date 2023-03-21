@@ -7,22 +7,22 @@ using VContainer.Unity;
 
 namespace Digimon.Digimon.Scripts.Applications.Installer.UI
 {
-    [RequireComponent(typeof(ScreenBase))]
+    [RequireComponent(typeof(ScreenView))]
     public sealed class ScreenPackage : LifetimeScope
     {
-        [SerializeField] private ScreenBase _screenBase;
+        [SerializeField] private ScreenView _screenView;
         [SerializeField] private Screens _screen;
 
         protected override void Configure(IContainerBuilder builder)
         {
             builder.Register<ScreenPresenter>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf()
                 .WithParameter(_screen);
-            builder.RegisterComponent(_screenBase);
+            builder.RegisterComponent(_screenView);
         }
 
         private void Reset()
         {
-            _screenBase = GetComponent<ScreenBase>();
+            _screenView = GetComponent<ScreenView>();
         }
     }
 }

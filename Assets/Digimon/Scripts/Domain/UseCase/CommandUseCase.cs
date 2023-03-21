@@ -23,6 +23,10 @@ namespace Digimon.Digimon.Scripts.Domain.UseCase
                 case "evolution":
                     _monsterTypeEntity.Evolution(_statusEntity.Hp, _statusEntity.Atk, _statusEntity.Def, _statusEntity.Speed);
                     break;
+                case "reset":
+                    _statusEntity.Lose();
+                    _monsterTypeEntity.Lose();
+                    break;
             }
         }
     }

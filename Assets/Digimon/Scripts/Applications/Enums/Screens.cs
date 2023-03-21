@@ -11,7 +11,7 @@ namespace Digimon.Digimon.Scripts.Applications.Enums
         EventCommon,
         EventPark, // おでかけ
         EventShop, // おでかけ
-        Break, // きゅうけい
+        BreakTime, // きゅうけい
         Battle,
         Lose, // 力を使い切っちゃった・・・
         Result
