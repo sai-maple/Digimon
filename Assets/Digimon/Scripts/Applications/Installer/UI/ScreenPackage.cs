@@ -15,8 +15,7 @@ namespace Digimon.Digimon.Scripts.Applications.Installer.UI
 
         protected override void Configure(IContainerBuilder builder)
         {
-            builder.Register<ScreenPresenter>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf()
-                .WithParameter(_screen);
+            builder.RegisterEntryPoint<ScreenPresenter>().WithParameter(_screen);
             builder.RegisterComponent(_screenView);
         }
 

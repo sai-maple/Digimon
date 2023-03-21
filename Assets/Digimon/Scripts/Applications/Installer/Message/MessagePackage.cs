@@ -6,13 +6,13 @@ using VContainer.Unity;
 
 namespace Digimon.Digimon.Scripts.Applications.Installer.Message
 {
-    public sealed class MessagePackage :  LifetimeScope
+    public sealed class MessagePackage : LifetimeScope
     {
         [SerializeField] private MessageView messageView;
 
         protected override void Configure(IContainerBuilder builder)
         {
-            builder.Register<MessagePresenter>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
+            builder.RegisterEntryPoint<MessagePresenter>();
             builder.RegisterComponent(messageView);
         }
 

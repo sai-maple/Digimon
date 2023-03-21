@@ -43,6 +43,7 @@ namespace Digimon.Digimon.Scripts.Presentation.View.Message
 
         public async UniTask MessageAsync(string message, CancellationToken token)
         {
+            if (string.IsNullOrEmpty(message)) return;
             var cancellation = new CancellationTokenSource();
             audioSource.Play();
             var buttonTask = nextButton.GetAsyncClickEventHandler();
