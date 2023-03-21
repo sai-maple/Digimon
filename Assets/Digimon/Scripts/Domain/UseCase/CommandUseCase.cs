@@ -55,6 +55,9 @@ namespace Digimon.Digimon.Scripts.Domain.UseCase
                         break;
                     case "animation":
                         break;
+                    case "battle":
+                        // entityにダメージを流して次のターンのobservableを流してもらう
+                        break;
                     case "to_menu":
                         _screenEntity.OnNext(Screens.Menu);
                         break;
