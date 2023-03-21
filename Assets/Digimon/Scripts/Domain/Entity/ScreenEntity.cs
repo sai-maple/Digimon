@@ -4,7 +4,7 @@ using UniRx;
 
 namespace Digimon.Digimon.Scripts.Domain.Entity
 {
-    public sealed class ScreenService : IDisposable
+    public sealed class ScreenEntity : IDisposable
     {
         private readonly ReactiveProperty<Screens> _screen = new();
 

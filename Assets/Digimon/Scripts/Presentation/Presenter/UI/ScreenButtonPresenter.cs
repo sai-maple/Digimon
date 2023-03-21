@@ -9,15 +9,15 @@ namespace Digimon.Digimon.Scripts.Presentation.Presenter.UI
 {
     public sealed class ScreenButtonPresenter : IInitializable, IDisposable
     {
-        private readonly ScreenService _screenService;
+        private readonly ScreenEntity _screenEntity;
         private readonly Button _button;
         private readonly Screens _screens;
 
         private readonly CompositeDisposable _disposable = new();
 
-        public ScreenButtonPresenter(ScreenService screenService, Button button, Screens screens)
+        public ScreenButtonPresenter(ScreenEntity screenEntity, Button button, Screens screens)
         {
-            _screenService = screenService;
+            _screenEntity = screenEntity;
             _button = button;
             _screens = screens;
         }
@@ -25,7 +25,7 @@ namespace Digimon.Digimon.Scripts.Presentation.Presenter.UI
         public void Initialize()
         {
             _button.OnClickAsObservable()
-                .Subscribe(_ => _screenService.OnNext(_screens))
+                .Subscribe(_ => _screenEntity.OnNext(_screens))
                 .AddTo(_disposable);
         }
 

@@ -9,22 +9,22 @@ namespace Digimon.Digimon.Scripts.Presentation.Presenter.UI
 {
     public sealed class ScreenPresenter : IInitializable, IDisposable
     {
-        private readonly ScreenService _screenService;
+        private readonly ScreenEntity _screenEntity;
         private readonly ScreenBase _screenBase;
         private readonly Screens _screens;
 
         private readonly CompositeDisposable _disposable = new();
 
-        public ScreenPresenter(ScreenService screenService, ScreenBase screenBase, Screens screens)
+        public ScreenPresenter(ScreenEntity screenEntity, ScreenBase screenBase, Screens screens)
         {
-            _screenService = screenService;
+            _screenEntity = screenEntity;
             _screenBase = screenBase;
             _screens = screens;
         }
 
         public void Initialize()
         {
-            _screenService.OnChangedAsObservable()
+            _screenEntity.OnChangedAsObservable()
                 .Subscribe(screen =>
                 {
                     if (screen == _screens)
