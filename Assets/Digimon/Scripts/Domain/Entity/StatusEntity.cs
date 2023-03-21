@@ -15,6 +15,7 @@ namespace Digimon.Digimon.Scripts.Domain.Entity
         public int Atk => 5 + _bonusAtk.Value;
         public int Def => 5 + _bonusDef.Value;
         public int Speed => 5 + _bonusSpeed.Value;
+        public int SkillLevel => _skillLevel.Value;
 
         public IObservable<(int previous, int current)> OnHpChangedAsObservable()
         {
