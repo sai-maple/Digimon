@@ -8,16 +8,9 @@ namespace Digimon.Digimon.Scripts.Presentation.View.Monster
     {
         private GameObject _monster;
 
-        public async UniTask InitializeAsync(MonsterName monsterName)
+        public async UniTask SpawnAsync(MonsterName monsterName)
         {
-            var fileName = $"Monsters/{monsterName}";
-            var prefab = await Resources.LoadAsync(fileName) as GameObject;
-            _monster = Instantiate(prefab, transform);
-        }
-
-        public async UniTask EvolutionAsync(MonsterName monsterName)
-        {
-            Destroy(_monster);
+            if (_monster != null) Destroy(_monster);
             _monster = null;
             var fileName = $"Monsters/{monsterName}";
             var prefab = await Resources.LoadAsync(fileName) as GameObject;

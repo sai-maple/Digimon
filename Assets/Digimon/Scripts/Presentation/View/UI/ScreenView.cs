@@ -11,7 +11,7 @@ namespace Digimon.Digimon.Scripts.Presentation.View.UI
         [SerializeField] private Vector3 to;
         [SerializeField] private CanvasGroup canvasGroup;
 
-        private bool _isShow;
+        protected bool IsShow;
 
         private void Awake()
         {
@@ -19,13 +19,13 @@ namespace Digimon.Digimon.Scripts.Presentation.View.UI
             canvasGroup.alpha = 0;
             canvasGroup.interactable = false;
             canvasGroup.blocksRaycasts = false;
-            _isShow = false;
+            IsShow = false;
         }
 
-        public async UniTaskVoid PresentAsync()
+        public virtual async UniTask PresentAsync()
         {
-            if (_isShow) return;
-            _isShow = true;
+            if (IsShow) return;
+            IsShow = true;
             var token = this.GetCancellationTokenOnDestroy();
             var tween = transform.DOLocalMove(to, 0.5f).WithCancellation(token);
             var fade = canvasGroup.DOFade(1, 0.5f).WithCancellation(token);
@@ -34,10 +34,10 @@ namespace Digimon.Digimon.Scripts.Presentation.View.UI
             canvasGroup.blocksRaycasts = true;
         }
 
-        public async UniTaskVoid DismissAsync()
+        public virtual async UniTaskVoid DismissAsync()
         {
-            if (!_isShow) return;
-            _isShow = false;
+            if (!IsShow) return;
+            IsShow = false;
             canvasGroup.interactable = false;
             canvasGroup.blocksRaycasts = false;
             var token = this.GetCancellationTokenOnDestroy();
