@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace Digimon.Digimon.Scripts.Applications.Enums
 {
@@ -6,6 +7,7 @@ namespace Digimon.Digimon.Scripts.Applications.Enums
     {
         Morning,
         Afternoon,
+        Evening
     }
 
     public static class GameTimeExtension
@@ -15,7 +17,30 @@ namespace Digimon.Digimon.Scripts.Applications.Enums
             return self switch
             {
                 GameTime.Morning => GameTime.Afternoon,
-                GameTime.Afternoon => GameTime.Morning,
+                GameTime.Afternoon => GameTime.Evening,
+                GameTime.Evening => GameTime.Morning,
+                _ => throw new ArgumentOutOfRangeException(nameof(self), self, null)
+            };
+        }
+        
+        public static string Label(this GameTime self)
+        {
+            return self switch
+            {
+                GameTime.Morning => "あさ",
+                GameTime.Afternoon => "ひる",
+                GameTime.Evening => "よる",
+                _ => throw new ArgumentOutOfRangeException(nameof(self), self, null)
+            };
+        }
+        
+        public static Color Color(this GameTime self)
+        {
+            return self switch
+            {
+                GameTime.Morning => new Color(1f, 0.75f, 0f),
+                GameTime.Afternoon => new Color(0.59f, 1f, 0.08f),
+                GameTime.Evening => new Color(0.15f, 0.41f, 1f),
                 _ => throw new ArgumentOutOfRangeException(nameof(self), self, null)
             };
         }

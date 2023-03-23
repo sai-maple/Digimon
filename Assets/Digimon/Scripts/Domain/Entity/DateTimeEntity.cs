@@ -9,6 +9,16 @@ namespace Digimon.Digimon.Scripts.Domain.Entity
         private readonly ReactiveProperty<int> _date = new(1);
         private readonly ReactiveProperty<GameTime> _gameTime = new();
 
+        public IObservable<int> OnDateChangedAsObservable()
+        {
+            return _date;
+        }
+
+        public IObservable<GameTime> OnGameTimeChangedAsObservable()
+        {
+            return _gameTime;
+        }
+
         // 午前午後の行動終わりにコールする
         public void Next()
         {

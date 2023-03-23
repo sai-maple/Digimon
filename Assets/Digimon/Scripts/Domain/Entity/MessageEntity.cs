@@ -18,11 +18,12 @@ namespace Digimon.Digimon.Scripts.Domain.Entity
             return _message.Share();
         }
 
-        public async UniTaskVoid Training(TrainingType trainingType)
+        public async UniTaskVoid Training(TrainingType trainingType, bool isClash)
         {
             var isSpecial = Random.Range(0, 100) < 10 ? "Sp" : "";
 
             var fileName = $"Training/Training{trainingType}{isSpecial}";
+            fileName = isClash ? "Training/Clash" : fileName;
 
             var textAsset = await Resources.LoadAsync(fileName) as TextAsset;
             if (textAsset != null) _message.OnNext(new StringReader(textAsset.text));

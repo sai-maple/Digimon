@@ -3,6 +3,7 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using Digimon.Digimon.Scripts.Applications.Enums;
 using Digimon.Digimon.Scripts.Domain.Entity;
+using Digimon.Digimon.Scripts.Domain.UseCase;
 using Digimon.Digimon.Scripts.Extension;
 using Digimon.Digimon.Scripts.Presentation.View.Monster;
 using Digimon.Digimon.Scripts.Presentation.View.UI;
@@ -17,6 +18,7 @@ namespace Digimon.Digimon.Scripts.Presentation.Presenter.UI
         private readonly MonsterTypeEntity _monsterTypeEntity;
         private readonly MessageEntity _messageEntity;
         private readonly ScreenEntity _screenEntity;
+        private readonly TrainingUseCase _trainingUseCase;
         private readonly MonsterSpawner _monsterSpawner;
         private readonly ScreenView _screenView;
         private readonly PlayableDirector _playableDirector;
@@ -27,12 +29,13 @@ namespace Digimon.Digimon.Scripts.Presentation.Presenter.UI
         private readonly CancellationTokenSource _cancellation = new();
 
         public TrainingScreenPresenter(MonsterTypeEntity monsterTypeEntity, MessageEntity messageEntity,
-            ScreenEntity screenEntity, MonsterSpawner monsterSpawner, ScreenView screenView,
-            PlayableDirector playableDirector, TrainingType trainingType, Screens screens)
+            ScreenEntity screenEntity, TrainingUseCase trainingUseCase, MonsterSpawner monsterSpawner,
+            ScreenView screenView, PlayableDirector playableDirector, TrainingType trainingType, Screens screens)
         {
             _monsterTypeEntity = monsterTypeEntity;
             _messageEntity = messageEntity;
             _screenEntity = screenEntity;
+            _trainingUseCase = trainingUseCase;
             _monsterSpawner = monsterSpawner;
             _screenView = screenView;
             _playableDirector = playableDirector;
@@ -66,7 +69,7 @@ namespace Digimon.Digimon.Scripts.Presentation.Presenter.UI
             await _playableDirector.PlayAsync(_cancellation.Token);
             if (_cancellation.IsCancellationRequested) return;
             // 結果メッセージ読み込み + メッセージのコマンドによって 能力向上 + メニューに戻る or イベント発生
-            _messageEntity.Training(_trainingType).Forget();
+            _messageEntity.Training(_trainingType, _trainingUseCase.IsCrash(_trainingType)).Forget();
         }
 
         public void Dispose()
