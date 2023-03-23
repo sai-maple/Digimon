@@ -15,8 +15,20 @@ namespace Digimon.Digimon.Scripts.Presentation.Presenter.UI
 
         private readonly CompositeDisposable _disposable = new();
 
+        public CommonViewPresenter(DateTimeEntity dateTimeEntity, StatusEntity statusEntity,
+            StaminaEntity staminaEntity, CommonView commonView)
+        {
+            _dateTimeEntity = dateTimeEntity;
+            _statusEntity = statusEntity;
+            _staminaEntity = staminaEntity;
+            _commonView = commonView;
+        }
+
         public void Initialize()
         {
+            _commonView.Initialize(_statusEntity.Hp, _statusEntity.Atk, _statusEntity.Def, _statusEntity.Speed,
+                _statusEntity.Speed);
+
             // 時間系
             _dateTimeEntity.OnDateChangedAsObservable()
                 .Subscribe(_commonView.OnDateChanged)

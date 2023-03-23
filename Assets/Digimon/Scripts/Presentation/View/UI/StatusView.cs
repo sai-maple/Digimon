@@ -10,19 +10,22 @@ namespace Digimon.Digimon.Scripts.Presentation.View.UI
     public sealed class StatusView : MonoBehaviour
     {
         [SerializeField] private Animator animator;
-        [SerializeField] private TextMeshPro rankText;
-        [SerializeField] private TextMeshPro statusText;
-        [SerializeField] private RankColor color;
+        [SerializeField] private TextMeshProUGUI rankText;
+        [SerializeField] private TextMeshProUGUI statusText;
         [SerializeField] private Rank _rank;
 
         public void Display(int previous, int current)
         {
-            var isPlus = current - previous > 0;
-            animator.SetTrigger(isPlus ? "Plus" : "Minus");
+            if (previous != current)
+            {
+                var isPlus = current - previous > 0;
+                animator.SetTrigger(isPlus ? "Plus" : "Minus");
+            }
+
             statusText.text = $"{current}";
             var rank = _rank.Get(current);
-            rankText.text = rank.ToString();
-            rankText.color = color.Get(rank);
+            rankText.text = rank.Label();
+            rankText.color = rank.Color();
         }
 
         [Serializable]

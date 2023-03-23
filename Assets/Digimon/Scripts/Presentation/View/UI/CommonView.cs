@@ -7,9 +7,10 @@ namespace Digimon.Digimon.Scripts.Presentation.View.UI
 {
     public sealed class CommonView : MonoBehaviour
     {
-        [SerializeField] private TextMeshPro dateText;
-        [SerializeField] private TextMeshPro timeText;
-        [SerializeField] private TextMeshPro staminaText;
+        [SerializeField] private TextMeshProUGUI dateText;
+        [SerializeField] private TextMeshProUGUI atoText;
+        [SerializeField] private TextMeshProUGUI timeText;
+        [SerializeField] private TextMeshProUGUI staminaText;
         [SerializeField] private StatusView hpText;
         [SerializeField] private StatusView atkText;
         [SerializeField] private StatusView defText;
@@ -17,11 +18,22 @@ namespace Digimon.Digimon.Scripts.Presentation.View.UI
         [SerializeField] private StatusView skillLevelText;
         [SerializeField] private Slider staminaSlider;
 
+        public void Initialize(int hp, int atk, int def, int speed, int skillLevel)
+        {
+            hpText.Display(hp, hp);
+            atkText.Display(atk, atk);
+            defText.Display(def, def);
+            speedText.Display(speed, speed);
+            skillLevelText.Display(skillLevel, skillLevel);
+        }
+
         public void OnDateChanged(int date)
         {
-            dateText.text = $"{date}<size=18>日目</size>";
+            dateText.text = $"{date}<size=32>日目</size>";
+            var ato = date % 10;
+            atoText.text = $"<size=32>試験まで あと</size><color=#FF0063>{10 - ato}<size=32>日</size>";
         }
-        
+
         public void OnTimeChanged(GameTime game)
         {
             timeText.text = game.Label();
@@ -38,22 +50,22 @@ namespace Digimon.Digimon.Scripts.Presentation.View.UI
         {
             hpText.Display(previous, current);
         }
-        
+
         public void OnAtkChanged(int previous, int current)
         {
             atkText.Display(previous, current);
         }
-        
+
         public void OnDefChanged(int previous, int current)
         {
             defText.Display(previous, current);
         }
-        
+
         public void OnSpeedChanged(int previous, int current)
         {
             speedText.Display(previous, current);
         }
-        
+
         public void OnSkillLevelChanged(int previous, int current)
         {
             skillLevelText.Display(previous, current);
