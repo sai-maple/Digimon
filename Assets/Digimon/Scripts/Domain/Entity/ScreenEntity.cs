@@ -7,7 +7,7 @@ namespace Digimon.Digimon.Scripts.Domain.Entity
 {
     public sealed class ScreenEntity : IDisposable
     {
-        private readonly ReactiveProperty<Screens> _screen = new();
+        private readonly ReactiveProperty<Screens> _screen = new(Screens.Non);
 
         public IObservable<Screens> OnChangedAsObservable()
         {
@@ -17,6 +17,12 @@ namespace Digimon.Digimon.Scripts.Domain.Entity
         public void OnNext(Screens screens)
         {
             _screen.Value = screens;
+        }
+
+        public void Event()
+        {
+            var screen = Random.Range(0, 100) < 50 ? Screens.EventShop : Screens.EventPark;
+            _screen.Value = screen;
         }
 
         public bool TryCommonEvent()

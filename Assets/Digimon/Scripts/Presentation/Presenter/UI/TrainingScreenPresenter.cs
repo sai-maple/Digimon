@@ -45,6 +45,7 @@ namespace Digimon.Digimon.Scripts.Presentation.Presenter.UI
 
         public void Initialize()
         {
+            _screenView.Initialize();
             _screenEntity.OnChangedAsObservable()
                 .Subscribe(screen =>
                 {

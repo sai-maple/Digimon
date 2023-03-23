@@ -14,6 +14,9 @@ namespace Digimon.Digimon.Scripts.Applications.Enums
         BreakTime, // きゅうけい
         Battle,
         Lose, // 力を使い切っちゃった・・・
-        Result
+        Result,
+        Evolution,
+        
+         Non = 999,
     }
 }
