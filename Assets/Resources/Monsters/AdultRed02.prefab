@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 8168682997774726031}
   - component: {fileID: 3194925422682700815}
   - component: {fileID: 34023844964369866}
+  - component: {fileID: 9211719527718601576}
   m_Layer: 5
   m_Name: AdultRed02
   m_TagString: Untagged
@@ -150,6 +151,23 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &9211719527718601576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3645220182136184772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83d960ca2d734f6e9f6d3df7748aef87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentReference:
+    TypeName: Digimon.Digimon.Scripts.Applications.Installer.Domain.RootInstaller
+  autoRun: 1
+  autoInjectGameObjects: []
+  _animationView: {fileID: 3194925422682700815}
 --- !u!1001 &830848338335564478
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -29,7 +29,7 @@ namespace Digimon.Digimon.Scripts.Presentation.View.Message
         {
             // todo シュって音出したい?
             _message.text = "";
-            await _messageBox.DOAnchorPos(_to, 0.5f).WithCancellation(token);
+            await _messageBox.DOAnchorPos(_to, 0.2f).WithCancellation(token);
             if (token.IsCancellationRequested) return;
             _canvasGroup.interactable = true;
             _canvasGroup.blocksRaycasts = true;
@@ -39,13 +39,14 @@ namespace Digimon.Digimon.Scripts.Presentation.View.Message
         {
             _canvasGroup.interactable = false;
             _canvasGroup.blocksRaycasts = false;
-            await _messageBox.DOAnchorPos(_from, 0.5f).WithCancellation(token);
+            await _messageBox.DOAnchorPos(_from, 0.2f).WithCancellation(token);
         }
 
         public async UniTask MessageAsync(string message, CancellationToken token)
         {
             if (string.IsNullOrEmpty(message)) return;
             var cancellation = new CancellationTokenSource();
+            _message.text = "";
             _audioSource.Play();
             var buttonTask = _nextButton.GetAsyncClickEventHandler();
             var textTween = _message.DOText(message, message.Length * 0.1f);

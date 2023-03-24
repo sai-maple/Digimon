@@ -23,7 +23,7 @@ namespace Digimon.Digimon.Scripts.Domain.Entity
             var isSpecial = Random.Range(0, 100) < 10 ? "Sp" : "";
 
             var fileName = $"Events/Training/Training{trainingType}{isSpecial}";
-            fileName = isClash ? "Training/Clash" : fileName;
+            fileName = isClash ? "Events/Training/Clash" : fileName;
 
             ToEvent(fileName).Forget();
         }

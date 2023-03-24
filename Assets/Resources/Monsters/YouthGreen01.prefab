@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 8646666132576061235}
   - component: {fileID: 4857843336324029038}
   - component: {fileID: 5363255596400438189}
+  - component: {fileID: -5995030448682754326}
   m_Layer: 5
   m_Name: YouthGreen01
   m_TagString: Untagged
@@ -150,6 +151,23 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-5995030448682754326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3525501495834289851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83d960ca2d734f6e9f6d3df7748aef87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentReference:
+    TypeName: Digimon.Digimon.Scripts.Applications.Installer.Domain.RootInstaller
+  autoRun: 1
+  autoInjectGameObjects: []
+  _animationView: {fileID: 4857843336324029038}
 --- !u!1001 &1698778239718314790
 PrefabInstance:
   m_ObjectHideFlags: 0
