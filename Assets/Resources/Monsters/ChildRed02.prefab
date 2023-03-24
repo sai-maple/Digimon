@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f10232ad2c140dcb6cc7b213ce3e4b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _reaction: {fileID: 0}
+  _reaction: {fileID: 8123146736214458829}
 --- !u!95 &5058390724668550113
 Animator:
   serializedVersion: 5
@@ -223,11 +223,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3929449478548081072, guid: 5817754862d4442d5ae205f6c96a2974, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3929449478548081072, guid: 5817754862d4442d5ae205f6c96a2974, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3929449478548081072, guid: 5817754862d4442d5ae205f6c96a2974, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -247,6 +247,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5817754862d4442d5ae205f6c96a2974, type: 3}
+--- !u!95 &8123146736214458829 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3929449478548081039, guid: 5817754862d4442d5ae205f6c96a2974, type: 3}
+  m_PrefabInstance: {fileID: 5058390725052074050}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &8123146736214458866 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3929449478548081072, guid: 5817754862d4442d5ae205f6c96a2974, type: 3}

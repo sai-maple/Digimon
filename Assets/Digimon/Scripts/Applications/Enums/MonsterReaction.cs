@@ -12,8 +12,8 @@ namespace Digimon.Digimon.Scripts.Applications.Enums
     public enum BattleReaction
     {
         Attack, // 右に殴る感じ + やぁ！
-        Damage, // 左にのけぞる + いてっ
+        Damage, // 左にのけぞる + いてっ + 赤く
         Win, // ぴょんぴょん + やったやった！ 
-        Down // どくろ
+        Down // きゅ~
     }
 }
