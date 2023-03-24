@@ -39,7 +39,7 @@ namespace Digimon.Digimon.Scripts.Presentation.View.Message
         {
             canvasGroup.interactable = false;
             canvasGroup.blocksRaycasts = false;
-            await messageBox.DOAnchorPos(to, 0.5f).WithCancellation(token);
+            await messageBox.DOAnchorPos(from, 0.5f).WithCancellation(token);
         }
 
         public async UniTask MessageAsync(string message, CancellationToken token)

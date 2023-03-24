@@ -1,15 +1,14 @@
-using Digimon.Digimon.Scripts.Applications.Enums;
 using Digimon.Digimon.Scripts.Domain.Entity;
 using VContainer.Unity;
 
 namespace Digimon.Digimon.Scripts.Presentation.Presenter.ForcedEvent
 {
-    public sealed class FirstDateEvent : IInitializable
+    public sealed class ByDateEventInvoker : IInitializable
     {
         private readonly ScreenEntity _screenEntity;
         private readonly MessageEntity _messageEntity;
 
-        public FirstDateEvent(ScreenEntity screenEntity, MessageEntity messageEntity)
+        public ByDateEventInvoker(ScreenEntity screenEntity, MessageEntity messageEntity)
         {
             _screenEntity = screenEntity;
             _messageEntity = messageEntity;
@@ -17,9 +16,12 @@ namespace Digimon.Digimon.Scripts.Presentation.Presenter.ForcedEvent
 
         public void Initialize()
         {
-            // todo 初日のテキストをロードしてmessageに流す
-
-            _screenEntity.OnNext(Screens.Menu);
+            //  初日の朝のイベント
+            _messageEntity.ToEvent("Events/Events/ForcedEvent/FirstDay").Forget();
+            
+            // todo 10日目沖の試練イベント
+            
+            // todo 2.4.6日目の進化イベント
         }
     }
 }

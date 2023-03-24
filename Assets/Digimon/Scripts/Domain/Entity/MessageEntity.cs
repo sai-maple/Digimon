@@ -18,15 +18,14 @@ namespace Digimon.Digimon.Scripts.Domain.Entity
             return _message.Share();
         }
 
-        public async UniTaskVoid Training(TrainingType trainingType, bool isClash)
+        public void Training(TrainingType trainingType, bool isClash)
         {
             var isSpecial = Random.Range(0, 100) < 10 ? "Sp" : "";
 
-            var fileName = $"Training/Training{trainingType}{isSpecial}";
+            var fileName = $"Events/Training/Training{trainingType}{isSpecial}";
             fileName = isClash ? "Training/Clash" : fileName;
 
-            var textAsset = await Resources.LoadAsync(fileName) as TextAsset;
-            if (textAsset != null) _message.OnNext(new StringReader(textAsset.text));
+            ToEvent(fileName).Forget();
         }
 
         public void RandomEvent(EventType eventType)
@@ -37,10 +36,15 @@ namespace Digimon.Digimon.Scripts.Domain.Entity
             _message.OnNext(new StringReader(textAsset.text));
         }
 
-        public async UniTaskVoid Result(bool isWin)
+        public void Result(bool isWin)
         {
             var result = isWin ? "Win" : "Lose";
-            var fileName = $"Battle/Result/{result}";
+            var fileName = $"Events/Battle/Result/{result}";
+            ToEvent(fileName).Forget();
+        }
+
+        public async UniTaskVoid ToEvent(string fileName)
+        {
             var textAsset = await Resources.LoadAsync(fileName) as TextAsset;
             if (textAsset != null) _message.OnNext(new StringReader(textAsset.text));
         }

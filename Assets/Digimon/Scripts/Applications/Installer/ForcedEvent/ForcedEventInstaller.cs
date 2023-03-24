@@ -8,7 +8,7 @@ namespace Digimon.Digimon.Scripts.Applications.Installer.ForcedEvent
     {
         protected override void Configure(IContainerBuilder builder)
         {
-            builder.RegisterEntryPoint<FirstDateEvent>();
+            builder.RegisterEntryPoint<ByDateEventInvoker>();
         }
     }
 }

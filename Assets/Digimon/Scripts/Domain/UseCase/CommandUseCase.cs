@@ -50,9 +50,10 @@ namespace Digimon.Digimon.Scripts.Domain.UseCase
                     _monsterTypeEntity.Evolution(_statusEntity.Hp, _statusEntity.Atk, _statusEntity.Def,
                         _statusEntity.Speed);
                     break;
-                case "reset":
+                case "lose":
                     _statusEntity.Lose();
                     _monsterTypeEntity.Lose();
+                    _dateTimeEntity.Lose();
                     break;
                 case "animation":
                     _monsterAnimationEntity.InvokeCommand(parameter);
@@ -70,6 +71,8 @@ namespace Digimon.Digimon.Scripts.Domain.UseCase
                     _screenEntity.OnNext(Screens.Menu);
                     break;
                 case "play_se":
+                    break;
+                case "play_bgm":
                     break;
                 // イベントの最後の行のコマンド
                 case "next":

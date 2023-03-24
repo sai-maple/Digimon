@@ -70,7 +70,7 @@ namespace Digimon.Digimon.Scripts.Presentation.Presenter.UI
             await _playableDirector.PlayAsync(_cancellation.Token);
             if (_cancellation.IsCancellationRequested) return;
             // 結果メッセージ読み込み + メッセージのコマンドによって 能力向上 + メニューに戻る or イベント発生
-            _messageEntity.Training(_trainingType, _trainingUseCase.IsCrash(_trainingType)).Forget();
+            _messageEntity.Training(_trainingType, _trainingUseCase.IsCrash(_trainingType));
         }
 
         public void Dispose()
