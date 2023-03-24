@@ -108,13 +108,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f865bbda4ab54a38a1b3baa3a5045577, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  messageBox: {fileID: 4642350499033453689}
-  canvasGroup: {fileID: 4642350499033453695}
-  message: {fileID: 4642350499444486922}
-  audioSource: {fileID: 4642350499033453694}
-  nextButton: {fileID: 4642350498727941560}
-  from: {x: 0, y: -400, z: 0}
-  to: {x: 0, y: 0, z: 0}
+  _messageBox: {fileID: 4642350499033453689}
+  _canvasGroup: {fileID: 4642350499033453695}
+  _message: {fileID: 4642350499444486922}
+  _audioSource: {fileID: 4642350499033453694}
+  _nextButton: {fileID: 4642350498727941560}
+  _from: {x: 0, y: -400, z: 0}
+  _to: {x: 0, y: 0, z: 0}
 --- !u!1 &4642350498727941562
 GameObject:
   m_ObjectHideFlags: 0
