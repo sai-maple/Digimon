@@ -26,9 +26,9 @@ namespace Digimon.Digimon.Scripts.Domain.UseCase
                 TrainingType.Speed => _statusEntity.Speed,
                 _ => throw new ArgumentOutOfRangeException(nameof(trainingType), trainingType, null)
             };
-            var late = _staminaEntity.ClashRate(trainingType, status);
+            var rate = _staminaEntity.ClashRate(trainingType, status);
 
-            return Random.Range(0, 100) < late;
+            return Random.Range(0, 100) < rate;
         }
     }
 }

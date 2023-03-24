@@ -24,9 +24,9 @@ namespace Digimon.Digimon.Scripts.Domain.Entity
             var bonus = trainingType == TrainingType.Hp ? 300 : 100;
             var tough = _stamina.Value + (bonus - status);
 
-            var late = 100 - tough;
-            late = Mathf.Clamp(late, 0, 100);
-            return late;
+            var rate = 100 - tough;
+            rate = Mathf.Clamp(rate, 0, 100);
+            return rate;
         }
 
         public void Dispose()
