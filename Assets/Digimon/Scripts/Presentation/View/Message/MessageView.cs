@@ -11,7 +11,7 @@ namespace Digimon.Digimon.Scripts.Presentation.View.Message
     {
         [SerializeField] private RectTransform messageBox;
         [SerializeField] private CanvasGroup canvasGroup;
-        [SerializeField] private TextMeshPro textMeshPro;
+        [SerializeField] private TextMeshProUGUI message;
         [SerializeField] private AudioSource audioSource;
         [SerializeField] private Button nextButton;
         [SerializeField] private Vector3 from;
@@ -19,7 +19,8 @@ namespace Digimon.Digimon.Scripts.Presentation.View.Message
 
         public void Initialize()
         {
-            messageBox.localPosition = from;
+            messageBox.anchoredPosition = from;
+            message.text = "";
             canvasGroup.interactable = false;
             canvasGroup.blocksRaycasts = false;
         }
@@ -27,8 +28,8 @@ namespace Digimon.Digimon.Scripts.Presentation.View.Message
         public async UniTask PresentAsync(CancellationToken token)
         {
             // todo シュって音出したい?
-            textMeshPro.text = "";
-            await messageBox.DOLocalMove(to, 0.5f).WithCancellation(token);
+            message.text = "";
+            await messageBox.DOAnchorPos(to, 0.5f).WithCancellation(token);
             if (token.IsCancellationRequested) return;
             canvasGroup.interactable = true;
             canvasGroup.blocksRaycasts = true;
@@ -38,7 +39,7 @@ namespace Digimon.Digimon.Scripts.Presentation.View.Message
         {
             canvasGroup.interactable = false;
             canvasGroup.blocksRaycasts = false;
-            await messageBox.DOLocalMove(to, 0.5f).WithCancellation(token);
+            await messageBox.DOAnchorPos(to, 0.5f).WithCancellation(token);
         }
 
         public async UniTask MessageAsync(string message, CancellationToken token)
@@ -47,7 +48,7 @@ namespace Digimon.Digimon.Scripts.Presentation.View.Message
             var cancellation = new CancellationTokenSource();
             audioSource.Play();
             var buttonTask = nextButton.GetAsyncClickEventHandler();
-            var textTask = textMeshPro.DOText(message, message.Length * 0.1f).WithCancellation(cancellation.Token);
+            var textTask = this.message.DOText(message, message.Length * 0.1f).WithCancellation(cancellation.Token);
 
             // ボタンクリックでメッセージ表示スキップ
             var index = await UniTask.WhenAny(buttonTask.OnClickAsync(), textTask);
@@ -58,7 +59,7 @@ namespace Digimon.Digimon.Scripts.Presentation.View.Message
                 cancellation.Cancel();
                 cancellation.Dispose();
                 cancellation = null;
-                textMeshPro.text = message;
+                this.message.text = message;
             }
 
             // カタカタ音停止 + もう一度タップで
