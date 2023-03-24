@@ -6,6 +6,11 @@ namespace Digimon.Digimon.Scripts.Applications.Enums
         Hart, // ハート
         Sad, // ぐるぐる
         Sleep, // Zzz
+        Down
+    }
+
+    public enum BattleReaction
+    {
         Attack, // 右に殴る感じ + やぁ！
         Damage, // 左にのけぞる + いてっ
         Win, // ぴょんぴょん + やったやった！ 

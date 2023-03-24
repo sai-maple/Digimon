@@ -6,23 +6,25 @@ namespace Digimon.Digimon.Scripts.Domain.Entity
 {
     public sealed class MonsterTypeEntity : IDisposable
     {
-        private ReactiveProperty<MonsterName> _monster;
-        public MonsterName Value => _monster.Value;
+        private readonly Subject<MonsterName> _monster = new();
+        public MonsterName Value { get; private set; } = MonsterName.Baby;
 
-        public IObservable<(MonsterName previous, MonsterName current)> OnEvolutionAsObservable()
+        public IObservable<MonsterName> OnEvolutionAsObservable()
         {
-            return _monster.Zip(_monster.Skip(1), (previous, current) => (previous, current));
+            return _monster.Share();
         }
 
         public void Evolution(int hp = 0, int atk = 0, int def = 0, int speed = 0)
         {
             // パラメータによって形態変化
-            _monster.Value = _monster.Value.Evolution(hp, atk, def, speed);
+            Value = Value.Evolution(hp, atk, def, speed);
+            _monster.OnNext(Value);
         }
 
         public void Lose()
         {
-            _monster.Value = MonsterName.Baby;
+            Value = MonsterName.Baby;
+            _monster.OnNext(Value);
         }
 
         public void Dispose()

@@ -1,5 +1,7 @@
 using System;
+using Cysharp.Threading.Tasks;
 using Digimon.Digimon.Scripts.Domain.Entity;
+using Digimon.Digimon.Scripts.Presentation.View.Monster;
 using Digimon.Digimon.Scripts.Presentation.View.UI;
 using UniRx;
 using VContainer.Unity;
@@ -11,23 +13,33 @@ namespace Digimon.Digimon.Scripts.Presentation.Presenter.UI
         private readonly DateTimeEntity _dateTimeEntity;
         private readonly StatusEntity _statusEntity;
         private readonly StaminaEntity _staminaEntity;
+        private readonly MonsterTypeEntity _monsterTypeEntity;
         private readonly CommonView _commonView;
+        private readonly MonsterSpawner _monsterSpawner;
 
         private readonly CompositeDisposable _disposable = new();
 
         public CommonViewPresenter(DateTimeEntity dateTimeEntity, StatusEntity statusEntity,
-            StaminaEntity staminaEntity, CommonView commonView)
+            StaminaEntity staminaEntity, MonsterTypeEntity monsterTypeEntity, CommonView commonView,
+            MonsterSpawner monsterSpawner)
         {
             _dateTimeEntity = dateTimeEntity;
             _statusEntity = statusEntity;
             _staminaEntity = staminaEntity;
+            _monsterTypeEntity = monsterTypeEntity;
             _commonView = commonView;
+            _monsterSpawner = monsterSpawner;
         }
 
         public void Initialize()
         {
             _commonView.Initialize(_statusEntity.Hp, _statusEntity.Atk, _statusEntity.Def, _statusEntity.Speed,
                 _statusEntity.Speed);
+            _monsterSpawner.SpawnAsync(_monsterTypeEntity.Value).Forget();
+
+            // 進化ウインドウの裏で差し替える
+            _monsterTypeEntity.OnEvolutionAsObservable()
+                .Subscribe(monster => _monsterSpawner.SpawnAsync(monster).Forget());
 
             // 時間系
             _dateTimeEntity.OnDateChangedAsObservable()

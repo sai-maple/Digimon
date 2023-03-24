@@ -5,11 +5,11 @@ namespace Digimon.Digimon.Scripts.Presentation.View.Monster
 {
     public sealed class MonsterAnimationView : MonoBehaviour
     {
-        [SerializeField] private Animator _animator;
+        [SerializeField] private Animator _reaction;
 
         public void SetTrigger(MonsterReaction reaction)
         {
-            _animator.SetTrigger(reaction.ToString());
+            _reaction.SetTrigger(reaction.ToString());
         }
     }
 }
