@@ -7,6 +7,7 @@ namespace Digimon.Digimon.Scripts.Applications.Enums
         Battle,
         Evolution,
         Outro,
+        Epilogue, // お別れシーンで流すやつ
     }
     
     public enum Se

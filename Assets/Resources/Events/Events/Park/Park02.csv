@@ -1,0 +1,9 @@
+うわっ。雨が降ってきた！,animation,Down
+ひえー。どしゃぶりだ。,,
+天気予報さんはずれちゃったね。びしょびしょだあ。,,
+たいりょくが5さがった。,plus_hp,-5
+,play_se,Descent
+,animation,Sad
+,to_menu,
+,next,
+

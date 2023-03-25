@@ -59,9 +59,11 @@ namespace Digimon.Digimon.Scripts.Domain.UseCase
                 case "animation":
                     _monsterAnimationEntity.InvokeCommand(parameter);
                     break;
-                case "battle":
+                case "damage":
                     // entityにダメージを流して次のターンのobservableを流してもらう
                     _battleEntity.TakeDamage(parameter);
+                    break;
+                case "battle":
                     _battleEntity.OnNext();
                     break;
                 // トレーニングの最後の行のコマンド 確率で共通イベントを起こす

@@ -11,6 +11,7 @@ namespace Digimon.Digimon.Scripts.Presentation.Presenter.UI
 {
     public sealed class LoseScreenPresenter : IInitializable, IDisposable
     {
+        private readonly DateTimeEntity _dateTimeEntity;
         private readonly ScreenEntity _screenEntity;
         private readonly MessageEntity _messageEntity;
         private readonly MonsterTypeEntity _monsterTypeEntity;
@@ -21,10 +22,11 @@ namespace Digimon.Digimon.Scripts.Presentation.Presenter.UI
         private readonly CompositeDisposable _disposable = new();
         private readonly CancellationTokenSource _cancellation = new();
 
-        public LoseScreenPresenter(ScreenEntity screenEntity, MessageEntity messageEntity,
-            MonsterTypeEntity monsterTypeEntity, ScreenView screenView,
+        public LoseScreenPresenter(DateTimeEntity dateTimeEntity, ScreenEntity screenEntity,
+            MessageEntity messageEntity, MonsterTypeEntity monsterTypeEntity, ScreenView screenView,
             EvolutionView evolutionView, Screens screens)
         {
+            _dateTimeEntity = dateTimeEntity;
             _screenEntity = screenEntity;
             _messageEntity = messageEntity;
             _monsterTypeEntity = monsterTypeEntity;
@@ -69,7 +71,8 @@ namespace Digimon.Digimon.Scripts.Presentation.Presenter.UI
         {
             await _evolutionView.EvolutionAsync(monsterName);
             // 最後コマンドでmenuにもどす
-            _messageEntity.ToEvent($"Events/Battle/Result/Lose2").Forget();
+            var file = _dateTimeEntity.Date == 11 ? "Lose2" : "Lose3";
+            _messageEntity.ToEvent($"Events/Battle/Result/{file}").Forget();
         }
 
         public void Dispose()

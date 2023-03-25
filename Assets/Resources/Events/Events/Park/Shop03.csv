@@ -1,0 +1,13 @@
+どこー。,animation,Sad
+うぅ。おかしを見てたらいつの間にかいなくなっちゃった。,,
+うわーん。おいていかないでー。,animation,Sad
+たいりょくが10さがった。,plus_hp,-10
+,play_se,Descent
+こうげきが5さがった。,plus_atk,-5
+,play_se,Descent
+ぼうぎょが5さがった。,plus_def,-5
+,play_se,Descent
+すばやさが5さがった。,plus_speed,-5
+,to_menu,
+,next,
+

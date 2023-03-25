@@ -60,10 +60,10 @@ namespace Digimon.Digimon.Scripts.Domain.Entity
         // 初日や対戦に敗北後、成長分を1/10に
         public void Lose()
         {
-            _bonusHp.Value /= 10;
-            _bonusAtk.Value /= 10;
-            _bonusDef.Value /= 10;
-            _bonusSpeed.Value /= 10;
+            _bonusHp.Value /= 5;
+            _bonusAtk.Value /= 5;
+            _bonusDef.Value /= 5;
+            _bonusSpeed.Value /= 5;
         }
 
         public void Dispose()
