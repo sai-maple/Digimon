@@ -30,6 +30,8 @@ namespace Digimon.Digimon.Scripts.Applications.Enums
     {
         public static EvolutionType Evolution(int hp = 0, int atk = 0, int def = 0, int speed = 0)
         {
+             // hpは通常の倍以上の数値があるので、Sランク基準で1/3計算する
+            hp = hp / 3;
             if (IsMax(hp, atk, def, speed))
             {
                 if (IsSimilar(atk, def, speed)) return EvolutionType.HpExtra;

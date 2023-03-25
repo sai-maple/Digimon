@@ -40,6 +40,7 @@ namespace Digimon.Digimon.Scripts.Presentation.Presenter.Message
             while (reader.Peek() != -1)
             {
                 var line = await reader.ReadLineAsync();
+                if (string.IsNullOrEmpty(line)) continue;
                 var messageAndCommand = line.Split(',');
                 await _messageView.MessageAsync(messageAndCommand[0], _cancellation.Token);
                 if (_cancellation.IsCancellationRequested) return;
