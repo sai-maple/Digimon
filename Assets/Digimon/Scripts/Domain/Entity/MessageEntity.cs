@@ -30,7 +30,7 @@ namespace Digimon.Digimon.Scripts.Domain.Entity
 
         public void RandomEvent(EventType eventType)
         {
-            var textAssets = Resources.LoadAll<TextAsset>($"{eventType}");
+            var textAssets = Resources.LoadAll<TextAsset>($"Events/Events/{eventType}");
             var textAsset = textAssets[Random.Range(0, textAssets.Length)];
             _message.OnNext(new StringReader(textAsset.text));
         }

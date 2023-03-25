@@ -1,0 +1,17 @@
+！！,,
+いたたた......。,,
+ちょっと無理しちゃたかも。,animation,Down
+,animation,Sad
+たいりょくが10さがった。,plus_hp,-10
+,play_se,Descent
+こうげきが5さがった。,plus_atk,-5
+,play_se,Descent
+ぼうぎょが5さがった。,plus_def,-5
+,play_se,Descent
+すばやさが5さがった。,plus_speed,-5
+,play_se,Descent
+スタミナが20へった。,stamina,-20
+,play_se,Descent
+,play_bgm,Main
+,try_event,
+

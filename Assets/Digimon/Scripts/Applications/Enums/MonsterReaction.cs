@@ -4,7 +4,7 @@ namespace Digimon.Digimon.Scripts.Applications.Enums
     {
         Happy, // 太陽
         Hart, // ハート
-        Sad, // ぐるぐる
+        Sad, // 汗
         Sleep, // Zzz
         Down
     }

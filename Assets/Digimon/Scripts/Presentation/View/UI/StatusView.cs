@@ -35,7 +35,7 @@ namespace Digimon.Digimon.Scripts.Presentation.View.UI
 
             public StatusRank Get(int value)
             {
-                return _values.Where(v => v.Threshold <= value).OrderBy(v => v.Threshold).First().View;
+                return _values.Where(v => v.Threshold <= value).OrderBy(v => v.Threshold).Last().View;
             }
         }
 

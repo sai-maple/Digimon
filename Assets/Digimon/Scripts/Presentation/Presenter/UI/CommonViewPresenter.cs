@@ -34,7 +34,7 @@ namespace Digimon.Digimon.Scripts.Presentation.Presenter.UI
         public void Initialize()
         {
             _commonView.Initialize(_statusEntity.Hp, _statusEntity.Atk, _statusEntity.Def, _statusEntity.Speed,
-                _statusEntity.Speed);
+                _statusEntity.SkillLevel);
             _monsterSpawner.SpawnAsync(_monsterTypeEntity.Value).Forget();
 
             // 進化ウインドウの裏で差し替える
