@@ -83,10 +83,13 @@ namespace Digimon.Digimon.Scripts.Domain.Entity
                 Value = Value.Next();
             }
 
-            if (_selfHp.Value <= 0) Value = BattleState.Lose;
-            if (_enemyHp.Value <= 0) Value = BattleState.Win;
+            if (Value is BattleState.MyTurn or BattleState.EnemyTurn)
+            {
+                if (_selfHp.Value <= 0) Value = BattleState.Lose;
+                if (_enemyHp.Value <= 0) Value = BattleState.Win;
+            }
 
-            _state.OnNext(BattleState.Intro1);
+            _state.OnNext(Value);
         }
 
         public int CalcDamage()

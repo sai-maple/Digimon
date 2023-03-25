@@ -9,8 +9,10 @@ namespace Digimon.Digimon.Scripts.Applications.Enums
         BattleStart, // 開始帯的な
         MyTurn,
         EnemyTurn,
-        Win,
-        Lose,
+        Win, // 画面表示
+        Win2, // UI表示
+        Lose, // 敗北
+        Lose2, // 退化演出
     }
 
     public static class BattleStateExtension
@@ -24,6 +26,8 @@ namespace Digimon.Digimon.Scripts.Applications.Enums
                 BattleState.BattleStart => BattleState.BattleStart,
                 BattleState.MyTurn => BattleState.MyTurn,
                 BattleState.EnemyTurn => BattleState.EnemyTurn,
+                BattleState.Win => BattleState.Win2,
+                BattleState.Lose => BattleState.Lose2,
                 _ => throw new ArgumentOutOfRangeException(nameof(self), self, null)
             };
         }
