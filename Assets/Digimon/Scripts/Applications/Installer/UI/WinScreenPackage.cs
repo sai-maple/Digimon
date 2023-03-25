@@ -8,7 +8,7 @@ using VContainer.Unity;
 
 namespace Digimon.Digimon.Scripts.Applications.Installer.UI
 {
-    [RequireComponent(typeof(ScreenView), typeof(ConfirmView))]
+    [RequireComponent(typeof(ScreenView))]
     public sealed class WinScreenPackage : LifetimeScope
     {
         [SerializeField] private ScreenView _screenView;
