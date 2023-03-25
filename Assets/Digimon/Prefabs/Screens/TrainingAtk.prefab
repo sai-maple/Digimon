@@ -140,11 +140,11 @@ MonoBehaviour:
     TypeName: Digimon.Digimon.Scripts.Applications.Installer.Domain.RootInstaller
   autoRun: 1
   autoInjectGameObjects: []
-  screenView: {fileID: 6146499105216832990}
-  monsterSpawner: {fileID: 6981051366889738711}
-  playableDirector: {fileID: 6146499104883082832}
-  screen: 3
-  trainingType: 1
+  _screenView: {fileID: 6146499105216832990}
+  _monsterSpawner: {fileID: 6981051366889738711}
+  _playableDirector: {fileID: 6146499104883082832}
+  _screen: 3
+  _trainingType: 1
 --- !u!1001 &938690067625312220
 PrefabInstance:
   m_ObjectHideFlags: 0

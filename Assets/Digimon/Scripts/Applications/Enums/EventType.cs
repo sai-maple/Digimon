@@ -4,6 +4,7 @@ namespace Digimon.Digimon.Scripts.Applications.Enums
     {
         Common,
         Park,
-        Shop
+        Shop,
+        BreakTime
     }
 }

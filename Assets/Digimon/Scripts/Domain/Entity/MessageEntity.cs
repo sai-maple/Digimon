@@ -4,7 +4,7 @@ using Cysharp.Threading.Tasks;
 using Digimon.Digimon.Scripts.Applications.Enums;
 using UniRx;
 using UnityEngine;
-using EventType = UnityEngine.EventType;
+using EventType = Digimon.Digimon.Scripts.Applications.Enums.EventType;
 using Random = UnityEngine.Random;
 
 namespace Digimon.Digimon.Scripts.Domain.Entity
@@ -31,7 +31,6 @@ namespace Digimon.Digimon.Scripts.Domain.Entity
         public void RandomEvent(EventType eventType)
         {
             var textAssets = Resources.LoadAll<TextAsset>($"{eventType}");
-
             var textAsset = textAssets[Random.Range(0, textAssets.Length)];
             _message.OnNext(new StringReader(textAsset.text));
         }

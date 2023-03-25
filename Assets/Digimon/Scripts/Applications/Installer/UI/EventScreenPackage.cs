@@ -3,27 +3,25 @@ using Digimon.Digimon.Scripts.Presentation.Presenter.UI;
 using Digimon.Digimon.Scripts.Presentation.View.Monster;
 using Digimon.Digimon.Scripts.Presentation.View.UI;
 using UnityEngine;
-using UnityEngine.Playables;
 using VContainer;
 using VContainer.Unity;
+using EventType = Digimon.Digimon.Scripts.Applications.Enums.EventType;
 
 namespace Digimon.Digimon.Scripts.Applications.Installer.UI
 {
     [RequireComponent(typeof(ScreenView))]
-    public sealed class TrainingScreenPackage : LifetimeScope
+    public sealed class EventScreenPackage : LifetimeScope
     {
         [SerializeField] private ScreenView _screenView;
         [SerializeField] private MonsterSpawner _monsterSpawner;
-        [SerializeField] private PlayableDirector _playableDirector;
-        [SerializeField] private Screens _screen;
-        [SerializeField] private TrainingType _trainingType;
+        [SerializeField] private Screens screen;
+        [SerializeField] private EventType _eventType;
 
         protected override void Configure(IContainerBuilder builder)
         {
-            builder.RegisterEntryPoint<TrainingScreenPresenter>().WithParameter(_screen).WithParameter(_trainingType);
+            builder.RegisterEntryPoint<EventScreenPresenter>().WithParameter(screen).WithParameter(_eventType);
             builder.RegisterComponent(_screenView);
             builder.RegisterComponent(_monsterSpawner);
-            builder.RegisterComponent(_playableDirector);
         }
 
         private void Reset()

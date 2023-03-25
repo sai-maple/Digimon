@@ -1,5 +1,4 @@
 using System;
-using Digimon.Digimon.Scripts.Applications.Enums;
 using Digimon.Digimon.Scripts.Domain.Entity;
 using UniRx;
 using UnityEngine.UI;

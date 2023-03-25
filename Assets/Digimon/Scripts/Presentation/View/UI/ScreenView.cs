@@ -7,7 +7,7 @@ namespace Digimon.Digimon.Scripts.Presentation.View.UI
     [RequireComponent(typeof(CanvasGroup))]
     public class ScreenView : MonoBehaviour
     {
-        [SerializeField] private Vector3 from;
+        [SerializeField] private Vector3 from = new(0, 500, 0);
         [SerializeField] private Vector3 to;
         [SerializeField] private CanvasGroup canvasGroup;
 
