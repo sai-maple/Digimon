@@ -16,7 +16,7 @@ namespace Digimon.Digimon.Scripts.Applications.Enums
         Lose, // 力を使い切っちゃった・・・
         Result,
         Evolution,
-        
-         Non = 999,
+
+        Non = 999,
     }
 }

@@ -35,9 +35,9 @@ namespace Digimon.Digimon.Scripts.Domain.Entity
             _message.OnNext(new StringReader(textAsset.text));
         }
 
-        public void Result(bool isWin)
+        public void Result(BattleState state)
         {
-            var result = isWin ? "Win" : "Lose";
+            var result = state == BattleState.Win ? "Win" : "Lose";
             var fileName = $"Events/Battle/Result/{result}";
             ToEvent(fileName).Forget();
         }
@@ -48,10 +48,10 @@ namespace Digimon.Digimon.Scripts.Domain.Entity
             if (textAsset != null) _message.OnNext(new StringReader(textAsset.text));
         }
 
-        public void Battle(bool myTurn, int damage)
+        public void Battle(BattleState state, int damage)
         {
             // todo 名前決め Entityにメッセージ作ってもらったほうがいいかも
-            var name = myTurn ? "あなた" : "あいて";
+            var name = state == BattleState.MyTurn ? "あなた" : "あいて";
             var text = $"{name}の攻撃,battle,{damage}\n{damage}のダメージ";
             _message.OnNext(new StringReader(text));
         }

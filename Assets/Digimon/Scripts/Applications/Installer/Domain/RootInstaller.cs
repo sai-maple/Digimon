@@ -16,9 +16,11 @@ namespace Digimon.Digimon.Scripts.Applications.Installer.Domain
             builder.Register<MessageEntity>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
             builder.Register<MonsterAnimationEntity>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
             builder.Register<StaminaEntity>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
+            builder.Register<BattleEntity>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
 
             builder.Register<CommandUseCase>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
             builder.Register<TrainingUseCase>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
+            builder.Register<BattleUseCase>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
         }
     }
 }

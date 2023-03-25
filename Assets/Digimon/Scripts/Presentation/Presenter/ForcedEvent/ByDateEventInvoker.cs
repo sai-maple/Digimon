@@ -26,10 +26,10 @@ namespace Digimon.Digimon.Scripts.Presentation.Presenter.ForcedEvent
             //  初日の朝のイベント
             _messageEntity.ToEvent("Events/Events/ForcedEvent/FirstDay").Forget();
 
-            // todo 10日目沖の試練イベント
+            // 10日目おきの試練イベント
             _dateTimeEntity.OnDateChangedAsObservable()
-                .Where(date => date is 10)
-                .Subscribe(_ => { });
+                .Where(date => date % 10 == 0)
+                .Subscribe(_ => _screenEntity.OnNext(Screens.Battle));
 
             // 3.5.7日目の進化イベント
             _dateTimeEntity.OnDateChangedAsObservable()

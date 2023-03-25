@@ -49,7 +49,7 @@ namespace Digimon.Digimon.Scripts.Presentation.View.Message
             _message.text = "";
             _audioSource.Play();
             var buttonTask = _nextButton.GetAsyncClickEventHandler();
-            var textTween = _message.DOText(message, message.Length * 0.1f);
+            var textTween = _message.DOText(message, message.Length * 0.1f).SetEase(Ease.Linear);
 
             // ボタンクリックでメッセージ表示スキップ
             var index = await UniTask.WhenAny(buttonTask.OnClickAsync(), textTween.WithCancellation(cancellation.Token));

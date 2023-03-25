@@ -1,0 +1,31 @@
+using System;
+
+namespace Digimon.Digimon.Scripts.Applications.Enums
+{
+    public enum BattleState
+    {
+        Intro1, // いよいよ
+        Intro2, // 敵登場後 + セリフ
+        BattleStart, // 開始帯的な
+        MyTurn,
+        EnemyTurn,
+        Win,
+        Lose,
+    }
+
+    public static class BattleStateExtension
+    {
+        public static BattleState Next(this BattleState self)
+        {
+            return self switch
+            {
+                BattleState.Intro1 => BattleState.Intro2,
+                BattleState.Intro2 => BattleState.BattleStart,
+                BattleState.BattleStart => BattleState.BattleStart,
+                BattleState.MyTurn => BattleState.MyTurn,
+                BattleState.EnemyTurn => BattleState.EnemyTurn,
+                _ => throw new ArgumentOutOfRangeException(nameof(self), self, null)
+            };
+        }
+    }
+}

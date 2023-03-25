@@ -11,6 +11,7 @@ namespace Digimon.Digimon.Scripts.Domain.UseCase
         private readonly DateTimeEntity _dateTimeEntity;
         private readonly MonsterAnimationEntity _monsterAnimationEntity;
         private readonly StaminaEntity _staminaEntity;
+        private readonly BattleEntity _battleEntity;
 
         public CommandUseCase(ScreenEntity screenEntity, StatusEntity statusEntity, MonsterTypeEntity monsterTypeEntity,
             DateTimeEntity dateTimeEntity, MonsterAnimationEntity monsterAnimationEntity, StaminaEntity staminaEntity)
@@ -60,6 +61,8 @@ namespace Digimon.Digimon.Scripts.Domain.UseCase
                     break;
                 case "battle":
                     // entityにダメージを流して次のターンのobservableを流してもらう
+                    _battleEntity.TakeDamage(parameter);
+                    _battleEntity.OnNext();
                     break;
                 // トレーニングの最後の行のコマンド 確率で共通イベントを起こす
                 case "try_event":
