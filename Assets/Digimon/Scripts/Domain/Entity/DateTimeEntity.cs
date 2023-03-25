@@ -9,6 +9,8 @@ namespace Digimon.Digimon.Scripts.Domain.Entity
         private readonly ReactiveProperty<int> _date = new(1);
         private readonly ReactiveProperty<GameTime> _gameTime = new();
 
+        public int Date => _date.Value;
+
         public IObservable<int> OnDateChangedAsObservable()
         {
             return _date;
