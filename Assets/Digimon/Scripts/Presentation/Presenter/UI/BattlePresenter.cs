@@ -65,7 +65,9 @@ namespace Digimon.Digimon.Scripts.Presentation.Presenter.UI
 
         private async void OnStateChanged(BattleState state)
         {
+            if (state == BattleState.Intro2) await _battleView.PresentAsync();
             if (state == BattleState.BattleStart) await _battleView.BattleStartAsync();
+            if (state is BattleState.Win or BattleState.Lose) await _battleView.BattleFinishAsync();
             _battleUseCase.OnNext(state);
         }
 

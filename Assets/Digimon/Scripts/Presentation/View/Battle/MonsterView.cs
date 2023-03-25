@@ -12,6 +12,7 @@ namespace Digimon.Digimon.Scripts.Presentation.View.Battle
         [SerializeField] private Slider _gauge;
         [SerializeField] private TextMeshProUGUI _hpText;
         [SerializeField] private TextMeshProUGUI _damageText;
+        [SerializeField] private CanvasGroup _uiCanvas;
 
         private DOTweenTMPAnimator _tmpAnimator;
         private int _maxHp;
@@ -21,18 +22,30 @@ namespace Digimon.Digimon.Scripts.Presentation.View.Battle
             _tmpAnimator = new DOTweenTMPAnimator(_damageText);
         }
 
-        public void Initialize(int hp)
+        public void Initialize(int hp, int y = 0)
         {
             _gauge.value = 1;
             _hpText.text = $"{hp} : {hp}";
             _maxHp = hp;
             _animator.SetBool(Battle.Down, false);
             _damageText.DOFade(0, 0);
+            transform.DOLocalMoveY(y, 0);
+            _uiCanvas.alpha = 0;
+        }
+
+        public void DoFadeUi(float endValue)
+        {
+            _uiCanvas.DOFade(endValue, 0.5f);
         }
 
         public void Attack()
         {
             _animator.SetTrigger(Battle.Attack);
+        }
+
+        public async UniTask PresentAsync()
+        {
+            await transform.DOLocalMoveY(0, 0.5f);
         }
 
         public void TakeDamage(int damage, int hp)

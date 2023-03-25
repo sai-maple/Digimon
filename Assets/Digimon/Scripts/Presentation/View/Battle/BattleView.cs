@@ -1,3 +1,4 @@
+using Coffee.UIExtensions;
 using Cysharp.Threading.Tasks;
 using Digimon.Digimon.Scripts.Applications.Enums;
 using Digimon.Digimon.Scripts.Extension;
@@ -12,28 +13,42 @@ namespace Digimon.Digimon.Scripts.Presentation.View.Battle
         [SerializeField] private MonsterSpawner _selfMonster;
         [SerializeField] private MonsterView _self;
         [SerializeField] private MonsterView _enemy;
-        [SerializeField] private PlayableDirector _presentEnemy;
         [SerializeField] private PlayableDirector _battleStart;
-
+        [SerializeField] private PlayableDirector _battleFinish;
+        [SerializeField] private UIParticle _particle;
+ 
         public async UniTask InitializeAsync(MonsterName monsterName, int selfHp, int enemyHp)
         {
             _self.Initialize(selfHp);
-            _enemy.Initialize(enemyHp);
+            _enemy.Initialize(enemyHp, 500);
             // 画面外に
-            _enemy.transform.localPosition = new Vector3(0, 500, 0);
+            _self.DoFadeUi(0);
+            _enemy.DoFadeUi(0);
+            _particle.Stop();
             await _selfMonster.SpawnAsync(monsterName);
         }
 
         public async UniTask PresentAsync()
         {
-            await _presentEnemy.PlayAsync();
+            await _enemy.PresentAsync();
         }
         
         public async UniTask BattleStartAsync()
         {
+            _self.DoFadeUi(1);
+            _enemy.DoFadeUi(1);
             await _battleStart.PlayAsync();
+            _particle.Play();
         }
 
+        public async UniTask BattleFinishAsync()
+        {
+            _particle.Stop();
+            _self.DoFadeUi(0);
+            _enemy.DoFadeUi(0);
+            await _battleFinish.PlayAsync();
+        }
+        
         public void Attack(int damage, int enemyHp)
         {
             _self.Attack();
