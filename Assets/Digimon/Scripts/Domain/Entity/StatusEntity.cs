@@ -1,5 +1,6 @@
 using System;
 using UniRx;
+using UnityEngine;
 
 namespace Digimon.Digimon.Scripts.Domain.Entity
 {
@@ -49,11 +50,11 @@ namespace Digimon.Digimon.Scripts.Domain.Entity
         
         public void Plus(int hp = 0, int atk = 0, int def = 0, int speed = 0, int skillLevel = 0)
         {
-            _bonusHp.Value += hp;
-            _bonusAtk.Value += atk;
-            _bonusDef.Value += def;
-            _bonusSpeed.Value += speed;
-            _skillLevel.Value += skillLevel;
+            _bonusHp.Value = Mathf.Max(_bonusHp.Value + hp, 0);
+            _bonusAtk.Value = Mathf.Max(_bonusAtk.Value + atk, 0);
+            _bonusDef.Value = Mathf.Max(_bonusDef.Value + def, 0);
+            _bonusSpeed.Value = Mathf.Max(_bonusSpeed.Value + speed, 0);
+            _skillLevel.Value = Mathf.Max(_skillLevel.Value + skillLevel, 0);
         }
 
         // 初日や対戦に敗北後、成長分を1/10に
