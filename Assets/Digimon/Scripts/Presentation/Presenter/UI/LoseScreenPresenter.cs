@@ -9,26 +9,27 @@ using VContainer.Unity;
 
 namespace Digimon.Digimon.Scripts.Presentation.Presenter.UI
 {
-    public sealed class EvolutionScreenPresenter : IInitializable, IDisposable
+    public sealed class LoseScreenPresenter : IInitializable, IDisposable
     {
         private readonly ScreenEntity _screenEntity;
-        private readonly MonsterTypeEntity _monsterTypeEntity;
         private readonly MessageEntity _messageEntity;
-        private readonly EvolutionView _evolutionView;
+        private readonly MonsterTypeEntity _monsterTypeEntity;
         private readonly ScreenView _screenView;
+        private readonly EvolutionView _evolutionView;
         private readonly Screens _screens;
 
         private readonly CompositeDisposable _disposable = new();
         private readonly CancellationTokenSource _cancellation = new();
 
-        public EvolutionScreenPresenter(ScreenEntity screenEntity, MonsterTypeEntity monsterTypeEntity,
-            MessageEntity messageEntity, EvolutionView evolutionView, ScreenView screenView, Screens screens)
+        public LoseScreenPresenter(ScreenEntity screenEntity, MessageEntity messageEntity,
+            MonsterTypeEntity monsterTypeEntity, ScreenView screenView,
+            EvolutionView evolutionView, Screens screens)
         {
             _screenEntity = screenEntity;
-            _monsterTypeEntity = monsterTypeEntity;
             _messageEntity = messageEntity;
-            _evolutionView = evolutionView;
+            _monsterTypeEntity = monsterTypeEntity;
             _screenView = screenView;
+            _evolutionView = evolutionView;
             _screens = screens;
         }
 
@@ -50,7 +51,7 @@ namespace Digimon.Digimon.Scripts.Presentation.Presenter.UI
 
             _monsterTypeEntity.OnEvolutionAsObservable()
                 .Where(_ => _screenEntity.Value == _screens)
-                .Subscribe(name => EvolutionAsync(name).Forget());
+                .Subscribe(monster => DegenerationAsync(monster).Forget());
         }
 
         private async UniTaskVoid PresentAsync()
@@ -60,21 +61,22 @@ namespace Digimon.Digimon.Scripts.Presentation.Presenter.UI
             await _screenView.PresentAsync();
             if (_cancellation.IsCancellationRequested) return;
 
-            // 進化前メッセージの読み込み + コマンドで進化
-            _messageEntity.ToEvent(_monsterTypeEntity.EvolutionFile(true)).Forget();
+            // 敗北イベント 最後コマンドでlose
+            _messageEntity.Result(BattleState.Lose);
         }
 
-        private async UniTaskVoid EvolutionAsync(MonsterName monsterName)
+        private async UniTaskVoid DegenerationAsync(MonsterName monsterName)
         {
             await _evolutionView.EvolutionAsync(monsterName);
-            _messageEntity.ToEvent(_monsterTypeEntity.EvolutionFile(false)).Forget();
+            // 最後コマンドでmenuにもどす
+            _messageEntity.ToEvent($"Events/Battle/Result/Lose2").Forget();
         }
 
         public void Dispose()
         {
-            _disposable.Dispose();
-            _cancellation.Cancel();
-            _cancellation.Dispose();
+            _disposable?.Dispose();
+            _cancellation?.Cancel();
+            _cancellation?.Dispose();
         }
     }
 }

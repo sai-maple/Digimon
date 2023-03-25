@@ -24,6 +24,19 @@ namespace Digimon.Digimon.Scripts.Presentation.Presenter.UI
         private readonly CompositeDisposable _disposable = new();
         private readonly CancellationTokenSource _cancellation = new();
 
+        public BattlePresenter(MonsterTypeEntity monsterTypeEntity, ScreenEntity screenEntity,
+            BattleEntity battleEntity, BattleUseCase battleUseCase, BattleView battleView, ScreenView screenView,
+            Screens screens)
+        {
+            _monsterTypeEntity = monsterTypeEntity;
+            _screenEntity = screenEntity;
+            _battleEntity = battleEntity;
+            _battleUseCase = battleUseCase;
+            _battleView = battleView;
+            _screenView = screenView;
+            _screens = screens;
+        }
+
         public void Initialize()
         {
             _screenView.Initialize();
@@ -47,10 +60,12 @@ namespace Digimon.Digimon.Scripts.Presentation.Presenter.UI
 
             // ダメージ演出
             _battleEntity.OnSelfHpChangedAsObservable()
+                .Where(_ => _screenEntity.Value == _screens)
                 .Subscribe(value => _battleView.TakeDamage(value.Damage, value.Hp))
                 .AddTo(_disposable);
 
             _battleEntity.OnEnemyHpChangedAsObservable()
+                .Where(_ => _screenEntity.Value == _screens)
                 .Subscribe(value => _battleView.Attack(value.Damage, value.Hp))
                 .AddTo(_disposable);
         }

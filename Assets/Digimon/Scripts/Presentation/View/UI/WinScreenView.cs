@@ -40,7 +40,7 @@ namespace Digimon.Digimon.Scripts.Presentation.View.UI
 
         public async UniTask Present()
         {
-            _canvasGroup.DOFade(1, 0.5f);
+            _canvasGroup.DOFade(1, 0.5f).ToUniTask().Forget();
             await transform.DOLocalMove(Vector3.zero, 0.5f);
             _canvasGroup.interactable = true;
             _canvasGroup.blocksRaycasts = true;

@@ -28,6 +28,23 @@ namespace Digimon.Digimon.Scripts.Presentation.Presenter.UI
         private readonly CompositeDisposable _disposable = new();
         private readonly CancellationTokenSource _cancellation = new();
 
+        public BattleWinScreenPresenter(DateTimeEntity dateTimeEntity, ScreenEntity screenEntity,
+            MonsterTypeEntity monsterTypeEntity, MessageEntity messageEntity, BattleEntity battleEntity,
+            MonsterSpawner monsterSpawner, WinScreenView winScreenView, ScreenView screenView, ConfirmView confirmView,
+            Screens screens)
+        {
+            _dateTimeEntity = dateTimeEntity;
+            _screenEntity = screenEntity;
+            _monsterTypeEntity = monsterTypeEntity;
+            _messageEntity = messageEntity;
+            _battleEntity = battleEntity;
+            _monsterSpawner = monsterSpawner;
+            _winScreenView = winScreenView;
+            _screenView = screenView;
+            _confirmView = confirmView;
+            _screens = screens;
+        }
+
         public void Initialize()
         {
             _screenView.Initialize();

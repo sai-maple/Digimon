@@ -8,6 +8,7 @@ namespace Digimon.Digimon.Scripts.Domain.Entity
     public sealed class ScreenEntity : IDisposable
     {
         private readonly ReactiveProperty<Screens> _screen = new(Screens.Non);
+        public Screens Value => _screen.Value;
 
         public IObservable<Screens> OnChangedAsObservable()
         {

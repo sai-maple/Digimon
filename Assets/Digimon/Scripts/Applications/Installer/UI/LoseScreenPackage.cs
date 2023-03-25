@@ -1,6 +1,6 @@
 using Digimon.Digimon.Scripts.Applications.Enums;
 using Digimon.Digimon.Scripts.Presentation.Presenter.UI;
-using Digimon.Digimon.Scripts.Presentation.View.Battle;
+using Digimon.Digimon.Scripts.Presentation.View.Monster;
 using Digimon.Digimon.Scripts.Presentation.View.UI;
 using UnityEngine;
 using VContainer;
@@ -8,24 +8,26 @@ using VContainer.Unity;
 
 namespace Digimon.Digimon.Scripts.Applications.Installer.UI
 {
-    [RequireComponent(typeof(ScreenView), typeof(BattleView))]
-    public sealed class BattleScreenPackage : LifetimeScope
+    [RequireComponent(typeof(ScreenView), typeof(EvolutionView))]
+    public sealed class LoseScreenPackage: LifetimeScope
     {
-        [SerializeField] private BattleView _battleView;
         [SerializeField] private ScreenView _screenView;
+        [SerializeField] private EvolutionView _evolutionView;
+        [SerializeField] private MonsterSpawner _monsterSpawner;
         [SerializeField] private Screens _screen;
 
         protected override void Configure(IContainerBuilder builder)
         {
-            builder.RegisterEntryPoint<BattlePresenter>().WithParameter(_screen);
+            builder.RegisterEntryPoint<LoseScreenPresenter>().WithParameter(_screen);
             builder.RegisterComponent(_screenView);
-            builder.RegisterComponent(_battleView);
+            builder.RegisterComponent(_evolutionView);
+            builder.RegisterComponent(_monsterSpawner);
         }
 
         private void Reset()
         {
             _screenView = GetComponent<ScreenView>();
-            _battleView = GetComponent<BattleView>();
+            _evolutionView = GetComponent<EvolutionView>();
         }
     }
 }

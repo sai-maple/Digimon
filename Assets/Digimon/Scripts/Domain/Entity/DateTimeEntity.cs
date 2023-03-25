@@ -32,8 +32,9 @@ namespace Digimon.Digimon.Scripts.Domain.Entity
 
         public void Lose()
         {
-            // 敗北後は強制的によるにして、就寝イベントを進める
-            _gameTime.Value = GameTime.Evening;
+            // 敗北後は強制的に翌日に
+            _gameTime.Value = GameTime.Morning;
+            _date.Value++;
         }
 
         public void Dispose()
