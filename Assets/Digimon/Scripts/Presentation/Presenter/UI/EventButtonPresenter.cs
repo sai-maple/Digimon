@@ -1,4 +1,5 @@
 using System;
+using Digimon.Digimon.Scripts.Applications.Enums;
 using Digimon.Digimon.Scripts.Domain.Entity;
 using UniRx;
 using UnityEngine.UI;
@@ -8,13 +9,15 @@ namespace Digimon.Digimon.Scripts.Presentation.Presenter.UI
 {
     public sealed class EventButtonPresenter: IInitializable, IDisposable
     {
+        private readonly DateTimeEntity _dateTimeEntity;
         private readonly ScreenEntity _screenEntity;
         private readonly Button _button;
 
         private readonly CompositeDisposable _disposable = new();
 
-        public EventButtonPresenter(ScreenEntity screenEntity, Button button)
+        public EventButtonPresenter(DateTimeEntity dateTimeEntity, ScreenEntity screenEntity, Button button)
         {
+            _dateTimeEntity = dateTimeEntity;
             _screenEntity = screenEntity;
             _button = button;
         }
@@ -22,6 +25,7 @@ namespace Digimon.Digimon.Scripts.Presentation.Presenter.UI
         public void Initialize()
         {
             _button.OnClickAsObservable()
+                .Where(_ => _dateTimeEntity.GameTime != GameTime.Evening)
                 .Subscribe(_ => _screenEntity.Event())
                 .AddTo(_disposable);
         }

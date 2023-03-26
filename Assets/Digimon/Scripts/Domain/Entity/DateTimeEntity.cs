@@ -6,10 +6,11 @@ namespace Digimon.Digimon.Scripts.Domain.Entity
 {
     public sealed class DateTimeEntity : IDisposable
     {
-        private readonly ReactiveProperty<int> _date = new(9);
+        private readonly ReactiveProperty<int> _date = new(1);
         private readonly ReactiveProperty<GameTime> _gameTime = new();
 
         public int Date => _date.Value;
+        public GameTime GameTime => _gameTime.Value;
 
         public IObservable<int> OnDateChangedAsObservable()
         {

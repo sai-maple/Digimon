@@ -14,6 +14,11 @@ namespace Digimon.Digimon.Scripts.Domain.Entity
             return _reaction.Share();
         }
 
+        public void OnNext(MonsterReaction reaction)
+        {
+            _reaction.OnNext(reaction);
+        }
+
         public void InvokeCommand(string parameter)
         {
             if (!Enum.TryParse(parameter, out MonsterReaction reaction))

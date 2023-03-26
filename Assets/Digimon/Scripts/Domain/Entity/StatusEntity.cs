@@ -12,30 +12,36 @@ namespace Digimon.Digimon.Scripts.Domain.Entity
         private readonly ReactiveProperty<int> _bonusSpeed = new();
         private readonly ReactiveProperty<int> _skillLevel = new(1);
 
-        public int Hp => 10 + _bonusHp.Value;
-        public int Atk => 5 + _bonusAtk.Value;
-        public int Def => 5 + _bonusDef.Value;
-        public int Speed => 5 + _bonusSpeed.Value;
+        private int _baseHp = 10;
+        private int _baseAtk = 5;
+        private int _baseDef = 5;
+        private int _baseSpeed = 5;
+
+        public int Hp => _baseHp + _bonusHp.Value;
+        public int Atk => _baseAtk + _bonusAtk.Value;
+        public int Def => _baseDef + _bonusDef.Value;
+        public int Speed => _baseSpeed + _bonusSpeed.Value;
         public int SkillLevel => _skillLevel.Value;
 
         public IObservable<(int previous, int current)> OnHpChangedAsObservable()
         {
-            return _bonusHp.Zip(_bonusHp.Skip(1), (previous, current) => (previous + 10, current + 10));
+            return _bonusHp.Zip(_bonusHp.Skip(1), (previous, current) => (previous + _baseHp, current + _baseHp));
         }
 
         public IObservable<(int previous, int current)> OnAtkChangedAsObservable()
         {
-            return _bonusAtk.Zip(_bonusAtk.Skip(1), (previous, current) => (previous + 5, current + 5));
+            return _bonusAtk.Zip(_bonusAtk.Skip(1), (previous, current) => (previous + _baseAtk, current + _baseAtk));
         }
 
         public IObservable<(int previous, int current)> OnDefChangedAsObservable()
         {
-            return _bonusDef.Zip(_bonusDef.Skip(1), (previous, current) => (previous + 5, current + 5));
+            return _bonusDef.Zip(_bonusDef.Skip(1), (previous, current) => (previous + _baseDef, current + _baseDef));
         }
 
         public IObservable<(int previous, int current)> OnSpeedChangedAsObservable()
         {
-            return _bonusSpeed.Zip(_bonusSpeed.Skip(1), (previous, current) => (previous + 5, current + 5));
+            return _bonusSpeed.Zip(_bonusSpeed.Skip(1),
+                (previous, current) => (previous + _baseSpeed, current + _baseSpeed));
         }
 
         public IObservable<(int previous, int current)> OnSkillLevelChangedAsObservable()
@@ -47,7 +53,7 @@ namespace Digimon.Digimon.Scripts.Domain.Entity
         {
             Plus(status[0], status[1], status[2], status[3], status[4]);
         }
-        
+
         public void Plus(int hp = 0, int atk = 0, int def = 0, int speed = 0, int skillLevel = 0)
         {
             _bonusHp.Value = Mathf.Max(_bonusHp.Value + hp, 0);
@@ -60,10 +66,14 @@ namespace Digimon.Digimon.Scripts.Domain.Entity
         // 初日や対戦に敗北後、成長分を1/10に
         public void Lose()
         {
-            _bonusHp.Value /= 5;
-            _bonusAtk.Value /= 5;
-            _bonusDef.Value /= 5;
-            _bonusSpeed.Value /= 5;
+            _baseHp += _bonusHp.Value / 5;
+            _baseAtk += _bonusAtk.Value / 5;
+            _baseDef += _bonusDef.Value / 5;
+            _baseSpeed += _bonusSpeed.Value / 5;
+            _bonusHp.Value = 0;
+            _bonusAtk.Value = 0;
+            _bonusDef.Value = 0;
+            _bonusSpeed.Value = 0;
         }
 
         public void Dispose()
