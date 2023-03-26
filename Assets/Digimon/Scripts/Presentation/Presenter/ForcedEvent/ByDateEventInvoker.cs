@@ -40,6 +40,7 @@ namespace Digimon.Digimon.Scripts.Presentation.Presenter.ForcedEvent
                 .Where(date => date % 10 is 3 or 5 or 7)
                 .Subscribe(_ => _screenEntity.OnNext(Screens.Evolution));
 
+            // 初日とイベント日以外は早朝イベント
             _dateTimeEntity.OnGameTimeChangedAsObservable()
                 .Where(time => time == GameTime.Evening)
                 .Subscribe(_ => EveningAsync().Forget());
@@ -47,9 +48,18 @@ namespace Digimon.Digimon.Scripts.Presentation.Presenter.ForcedEvent
 
         private async UniTaskVoid EveningAsync()
         {
-            _animationEntity.OnNext(MonsterReaction.Sleep);
-            await UniTask.Delay(TimeSpan.FromSeconds(3));
-            _messageEntity.Evening().Forget();
+            if (_dateTimeEntity.Date % 10 is not 9 or 0 or 2 or 4 or 6)
+            {
+                _animationEntity.OnNext(MonsterReaction.Sleep);
+                await UniTask.Delay(TimeSpan.FromSeconds(3));
+                _messageEntity.Evening().Forget();
+            }
+            else
+            {
+                await UniTask.Delay(TimeSpan.FromSeconds(3));
+                // イベント日はそのまま起床
+                _dateTimeEntity.Next();
+            }
         }
 
         public void Dispose()

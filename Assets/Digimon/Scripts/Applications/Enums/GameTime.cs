@@ -44,5 +44,16 @@ namespace Digimon.Digimon.Scripts.Applications.Enums
                 _ => throw new ArgumentOutOfRangeException(nameof(self), self, null)
             };
         }
+        
+        public static Color BackColor(this GameTime self)
+        {
+            return self switch
+            {
+                GameTime.Morning => new Color(1f, 0.96f, 0.87f),
+                GameTime.Afternoon => UnityEngine.Color.white,
+                GameTime.Evening => new Color(0.47f, 0.51f, 1f),
+                _ => throw new ArgumentOutOfRangeException(nameof(self), self, null)
+            };
+        }
     }
 }
