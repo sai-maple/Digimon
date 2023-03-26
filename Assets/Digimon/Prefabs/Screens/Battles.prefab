@@ -382,8 +382,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: Battle
       objectReference: {fileID: 0}
+    - target: {fileID: 5040299038330667039, guid: 79ed9a4eed2cf47d68d178bcf00c0401, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5040299038330667039, guid: 79ed9a4eed2cf47d68d178bcf00c0401, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5638072944624077831, guid: 79ed9a4eed2cf47d68d178bcf00c0401, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7468074140329876262, guid: 79ed9a4eed2cf47d68d178bcf00c0401, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7468074140329876262, guid: 79ed9a4eed2cf47d68d178bcf00c0401, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7468074140484733956, guid: 79ed9a4eed2cf47d68d178bcf00c0401, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7468074140484733956, guid: 79ed9a4eed2cf47d68d178bcf00c0401, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7468074140484733956, guid: 79ed9a4eed2cf47d68d178bcf00c0401, type: 3}
+      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

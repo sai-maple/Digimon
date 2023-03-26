@@ -101,7 +101,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5448535781507173086, guid: 2150a496e03284e638bbe46e942bff93, type: 3}
       propertyPath: m_text
-      value: "\u304F\u3093\u308C\u3093"
+      value: "\u3042\u305D\u3076"
       objectReference: {fileID: 0}
     - target: {fileID: 8312886886225489692, guid: 2150a496e03284e638bbe46e942bff93, type: 3}
       propertyPath: m_Pivot.x

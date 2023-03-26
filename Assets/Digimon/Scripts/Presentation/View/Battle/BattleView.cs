@@ -19,7 +19,7 @@ namespace Digimon.Digimon.Scripts.Presentation.View.Battle
  
         public async UniTask InitializeAsync(MonsterName monsterName, int selfHp, int enemyHp)
         {
-            _self.Initialize(selfHp);
+            _self.Initialize(selfHp, -50);
             _enemy.Initialize(enemyHp, 550);
             // 画面外に
             _particle.Stop();
