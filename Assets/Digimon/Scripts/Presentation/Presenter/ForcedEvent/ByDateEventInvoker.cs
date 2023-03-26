@@ -49,7 +49,7 @@ namespace Digimon.Digimon.Scripts.Presentation.Presenter.ForcedEvent
         {
             _animationEntity.OnNext(MonsterReaction.Sleep);
             await UniTask.Delay(TimeSpan.FromSeconds(3));
-            _dateTimeEntity.Next();
+            _messageEntity.Evening().Forget();
         }
 
         public void Dispose()
