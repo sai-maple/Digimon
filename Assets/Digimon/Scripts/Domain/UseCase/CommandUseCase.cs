@@ -14,7 +14,8 @@ namespace Digimon.Digimon.Scripts.Domain.UseCase
         private readonly BattleEntity _battleEntity;
 
         public CommandUseCase(ScreenEntity screenEntity, StatusEntity statusEntity, MonsterTypeEntity monsterTypeEntity,
-            DateTimeEntity dateTimeEntity, MonsterAnimationEntity monsterAnimationEntity, StaminaEntity staminaEntity)
+            DateTimeEntity dateTimeEntity, MonsterAnimationEntity monsterAnimationEntity, StaminaEntity staminaEntity,
+            BattleEntity battleEntity)
         {
             _screenEntity = screenEntity;
             _statusEntity = statusEntity;
@@ -22,6 +23,7 @@ namespace Digimon.Digimon.Scripts.Domain.UseCase
             _dateTimeEntity = dateTimeEntity;
             _monsterAnimationEntity = monsterAnimationEntity;
             _staminaEntity = staminaEntity;
+            _battleEntity = battleEntity;
         }
 
         // csvからロードしたメッセージを表示して、次へをタップした時に2カラム目以降に記載されたコマンドを実行
@@ -29,7 +31,7 @@ namespace Digimon.Digimon.Scripts.Domain.UseCase
         {
             var command = commands[0];
             if (string.IsNullOrEmpty(command)) return;
-            var parameter = commands[1];
+            var parameter = commands[1] ?? "";
             switch (command)
             {
                 case "plus_atk":

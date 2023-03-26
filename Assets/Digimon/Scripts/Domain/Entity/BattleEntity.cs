@@ -51,7 +51,6 @@ namespace Digimon.Digimon.Scripts.Domain.Entity
             _selfSkill = skill;
             _enemyHp.Value = 250;
 
-            _state.OnNext(BattleState.Intro1);
             Value = BattleState.Intro1;
         }
 

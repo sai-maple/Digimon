@@ -20,10 +20,8 @@ namespace Digimon.Digimon.Scripts.Presentation.View.Battle
         public async UniTask InitializeAsync(MonsterName monsterName, int selfHp, int enemyHp)
         {
             _self.Initialize(selfHp);
-            _enemy.Initialize(enemyHp, 500);
+            _enemy.Initialize(enemyHp, 550);
             // 画面外に
-            _self.DoFadeUi(0);
-            _enemy.DoFadeUi(0);
             _particle.Stop();
             await _selfMonster.SpawnAsync(monsterName);
         }

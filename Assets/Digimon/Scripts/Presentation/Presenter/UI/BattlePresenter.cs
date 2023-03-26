@@ -60,12 +60,12 @@ namespace Digimon.Digimon.Scripts.Presentation.Presenter.UI
 
             // ダメージ演出
             _battleEntity.OnSelfHpChangedAsObservable()
-                .Where(_ => _screenEntity.Value == _screens)
+                .Where(_ => _battleEntity.Value == BattleState.EnemyTurn)
                 .Subscribe(value => _battleView.TakeDamage(value.Damage, value.Hp))
                 .AddTo(_disposable);
 
             _battleEntity.OnEnemyHpChangedAsObservable()
-                .Where(_ => _screenEntity.Value == _screens)
+                .Where(_ => _battleEntity.Value == BattleState.MyTurn)
                 .Subscribe(value => _battleView.Attack(value.Damage, value.Hp))
                 .AddTo(_disposable);
         }
@@ -76,6 +76,7 @@ namespace Digimon.Digimon.Scripts.Presentation.Presenter.UI
             await _battleView.InitializeAsync(_monsterTypeEntity.Value, selfHp, enemyHp);
             if (_cancellation.IsCancellationRequested) return;
             await _screenView.PresentAsync();
+            _battleUseCase.OnNext(BattleState.Intro1);
         }
 
         private async void OnStateChanged(BattleState state)

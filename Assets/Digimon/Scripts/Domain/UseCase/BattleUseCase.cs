@@ -32,10 +32,10 @@ namespace Digimon.Digimon.Scripts.Domain.UseCase
             switch (state)
             {
                 case BattleState.Intro1:
-                    _messageEntity.ToEvent("Battle/BattleIntro1").Forget();
+                    _messageEntity.ToEvent("Events/Battle/BattleIntro1").Forget();
                     break;
                 case BattleState.Intro2:
-                    _messageEntity.ToEvent("Battle/BattleIntro2").Forget();
+                    _messageEntity.ToEvent("Events/Battle/BattleIntro2").Forget();
                     break;
                 case BattleState.BattleStart:
                     // ここだけView側の表示更新をawaitしてから呼ぶ

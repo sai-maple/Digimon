@@ -14,13 +14,7 @@ namespace Digimon.Digimon.Scripts.Presentation.View.Battle
         [SerializeField] private TextMeshProUGUI _damageText;
         [SerializeField] private CanvasGroup _uiCanvas;
 
-        private DOTweenTMPAnimator _tmpAnimator;
         private int _maxHp;
-
-        private void Awake()
-        {
-            _tmpAnimator = new DOTweenTMPAnimator(_damageText);
-        }
 
         public void Initialize(int hp, int y = 0)
         {
@@ -28,8 +22,8 @@ namespace Digimon.Digimon.Scripts.Presentation.View.Battle
             _hpText.text = $"{hp} : {hp}";
             _maxHp = hp;
             _animator.SetBool(Battle.Down, false);
-            _damageText.DOFade(0, 0);
-            transform.DOLocalMoveY(y, 0);
+            _damageText.DOFade(0, 0.1f);
+            transform.DOLocalMoveY(y, 0.1f);
             _uiCanvas.alpha = 0;
         }
 
@@ -52,13 +46,26 @@ namespace Digimon.Digimon.Scripts.Presentation.View.Battle
         {
             _damageText.text = $"-{damage}";
             _hpText.text = $"{hp} : {_maxHp}";
-            for (var i = 0; i < _tmpAnimator.textInfo.characterCount; i++)
+            _damageText.DOFade(1, 0f);
+            var tmpAnimator = new DOTweenTMPAnimator(_damageText);
+            for (var i = 0; i < tmpAnimator.textInfo.characterCount; i++)
             {
-                DOTween.Sequence()
-                    .Append(_tmpAnimator.DOOffsetChar(i, Vector3.up * 20, 0.25f))
-                    .Join(_tmpAnimator.DOFadeChar(i, 1, 0.1f))
-                    .Append(_tmpAnimator.DOOffsetChar(i, Vector3.zero, 0.25f))
-                    .SetDelay(0.2f * i);
+                if (i == tmpAnimator.textInfo.characterCount - 1)
+                {
+                    DOTween.Sequence()
+                        .Append(tmpAnimator.DOOffsetChar(i, tmpAnimator.GetCharOffset(i) + Vector3.up * 20, 0.25f))
+                        .Join(tmpAnimator.DOFadeChar(i, 1, 0.1f))
+                        .Append(tmpAnimator.DOOffsetChar(i, tmpAnimator.GetCharOffset(i) + Vector3.zero, 0.25f))
+                        .SetDelay(0.2f * i).OnComplete(() => tmpAnimator.Reset());
+                }
+                else
+                {
+                    DOTween.Sequence()
+                        .Append(tmpAnimator.DOOffsetChar(i, tmpAnimator.GetCharOffset(i) + Vector3.up * 20, 0.25f))
+                        .Join(tmpAnimator.DOFadeChar(i, 1, 0.1f))
+                        .Append(tmpAnimator.DOOffsetChar(i, tmpAnimator.GetCharOffset(i) + Vector3.zero, 0.25f))
+                        .SetDelay(0.2f * i);
+                }
             }
 
             _animator.SetTrigger(Battle.Damage);
