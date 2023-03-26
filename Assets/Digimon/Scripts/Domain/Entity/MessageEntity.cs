@@ -5,6 +5,7 @@ using Digimon.Digimon.Scripts.Applications.Enums;
 using UniRx;
 using UnityEngine;
 using EventType = Digimon.Digimon.Scripts.Applications.Enums.EventType;
+using MonsterName = Digimon.Digimon.Scripts.Applications.Static.MonsterName;
 using Random = UnityEngine.Random;
 
 namespace Digimon.Digimon.Scripts.Domain.Entity
@@ -59,8 +60,7 @@ namespace Digimon.Digimon.Scripts.Domain.Entity
         {
             // メッセージの非表示と表示が同タイミングになってしまうので待つ
             await UniTask.DelayFrame(5);
-            // todo 名前決め se
-            var name = state == BattleState.MyTurn ? "あなた" : "大精霊";
+            var name = state == BattleState.MyTurn ? MonsterName.Name : "大精霊";
             var text = $"{name}の攻撃,damage,{damage}\n,play_se,Damage\n{damage}のダメージ,battle,";
             _message.OnNext(new StringReader(text));
         }

@@ -71,7 +71,7 @@ namespace Digimon.Digimon.Scripts.Presentation.Presenter.UI
                 .AddTo(_disposable);
 
             _winScreenView.OnReturnTapAsObservable()
-                .Subscribe(_ => _confirmView.Present())
+                .Subscribe(_ => _confirmView.Present(() => SceneManager.LoadScene($"Tutorial")))
                 .AddTo(_disposable);
 
             _battleEntity.OnStateChangedAsObservable()

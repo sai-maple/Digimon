@@ -37,7 +37,7 @@ namespace Digimon.Digimon.Scripts.Presentation.View.Message
             _canvasGroup.blocksRaycasts = true;
         }
 
-        public async UniTaskVoid DismissAsync(CancellationToken token)
+        public async UniTask DismissAsync(CancellationToken token)
         {
             _canvasGroup.interactable = false;
             _canvasGroup.blocksRaycasts = false;
