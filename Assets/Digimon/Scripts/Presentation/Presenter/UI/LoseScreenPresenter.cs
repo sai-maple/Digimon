@@ -72,7 +72,7 @@ namespace Digimon.Digimon.Scripts.Presentation.Presenter.UI
             await _evolutionView.EvolutionAsync(monsterName);
             // 最後コマンドでmenuにもどす
             var file = _dateTimeEntity.Date == 11 ? "Lose2" : "Lose3";
-            _messageEntity.ToEvent($"Events/Battle/Result/{file}").Forget();
+            _messageEntity.ToEvent($"Events/Battle/{file}").Forget();
         }
 
         public void Dispose()

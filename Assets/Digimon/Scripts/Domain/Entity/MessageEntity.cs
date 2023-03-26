@@ -38,7 +38,7 @@ namespace Digimon.Digimon.Scripts.Domain.Entity
         public void Result(BattleState state)
         {
             var result = state == BattleState.Win ? "Win" : "Lose";
-            var fileName = $"Events/Battle/Result/{result}";
+            var fileName = $"Events/Battle/{result}";
             ToEvent(fileName).Forget();
         }
 
