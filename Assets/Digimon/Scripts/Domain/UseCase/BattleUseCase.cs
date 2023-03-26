@@ -44,7 +44,7 @@ namespace Digimon.Digimon.Scripts.Domain.UseCase
                 case BattleState.MyTurn:
                 case BattleState.EnemyTurn:
                     var damage = _battleEntity.CalcDamage();
-                    _messageEntity.Battle(_battleEntity.Value, damage);
+                    _messageEntity.Battle(_battleEntity.Value, damage).Forget();
                     break;
                 case BattleState.Win:
                     _screenEntity.OnNext(Screens.Result);

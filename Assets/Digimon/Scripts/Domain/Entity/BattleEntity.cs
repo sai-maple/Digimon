@@ -50,6 +50,12 @@ namespace Digimon.Digimon.Scripts.Domain.Entity
             _selfSpeed = speed;
             _selfSkill = skill;
             _enemyHp.Value = 250;
+            
+            // _selfHp.Value = 250;
+            // _selfAtk = 80;
+            // _selfDef = 70;
+            // _selfSpeed = 75;
+            // _selfSkill = 5;
 
             Value = BattleState.Intro1;
         }
@@ -100,7 +106,8 @@ namespace Digimon.Digimon.Scripts.Domain.Entity
             var damage = (atk * (1 + skill / 10f) - def) * Random.Range(0.85f, 1f);
             Debug.Log($"Damage :{damage}");
             damage = Mathf.Max(damage, 1);
-            return Mathf.FloorToInt(damage);
+            _damage = Mathf.FloorToInt(damage);
+            return _damage;
         }
 
         public void Dispose()

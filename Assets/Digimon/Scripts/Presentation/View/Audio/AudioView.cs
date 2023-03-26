@@ -27,8 +27,11 @@ namespace Digimon.Digimon.Scripts.Presentation.View.Audio
         {
             if (bgm == Bgm.Empty)
             {
-                var current = _bgmAudios[_index % 2];
-                _bgmAudios[_index % 2].DOFade(0, 0.5f).OnComplete(() => current.Stop());
+                foreach (var bgmAudio in _bgmAudios)
+                {
+                    bgmAudio.DOFade(0, 0.5f).OnComplete(() => bgmAudio.Stop());
+                }
+                return;
             }
             
             var clip = _bgmPairs.FirstOrDefault(pair => pair.Bgm == bgm);

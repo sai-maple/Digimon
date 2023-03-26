@@ -572,6 +572,14 @@ PrefabInstance:
       propertyPath: m_text
       value: "\u524D\u306E\u753B\u9762\u306B\n\u3082\u3069\u308B"
       objectReference: {fileID: 0}
+    - target: {fileID: 5448535781507173086, guid: 2150a496e03284e638bbe46e942bff93, type: 3}
+      propertyPath: m_fontSize
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 5448535781507173086, guid: 2150a496e03284e638bbe46e942bff93, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 36
+      objectReference: {fileID: 0}
     - target: {fileID: 8312886886225489692, guid: 2150a496e03284e638bbe46e942bff93, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -684,6 +692,18 @@ PrefabInstance:
     - target: {fileID: 2965402770346767861, guid: 2150a496e03284e638bbe46e942bff93, type: 3}
       propertyPath: m_Name
       value: ConfirmButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 5448535781507173086, guid: 2150a496e03284e638bbe46e942bff93, type: 3}
+      propertyPath: m_text
+      value: "\u3082\u3046\u4E00\u5EA6\n\u4F1A\u3044\u305F\u3044"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5448535781507173086, guid: 2150a496e03284e638bbe46e942bff93, type: 3}
+      propertyPath: m_fontSize
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 5448535781507173086, guid: 2150a496e03284e638bbe46e942bff93, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 8312886886225489692, guid: 2150a496e03284e638bbe46e942bff93, type: 3}
       propertyPath: m_Pivot.x
@@ -1145,6 +1165,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3621114985614466892}
     m_Modifications:
+    - target: {fileID: 79429220667975111, guid: 588a64496c83843518659d8a8d21122a, type: 3}
+      propertyPath: m_text
+      value: "\u30E9\u30F3\u30AD\u30F3\u30B0"
+      objectReference: {fileID: 0}
     - target: {fileID: 4168759356654338053, guid: 588a64496c83843518659d8a8d21122a, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

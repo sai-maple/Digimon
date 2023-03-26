@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Digimon.Digimon.Scripts.Applications.Enums;
 using Digimon.Digimon.Scripts.Domain.Entity;
@@ -37,7 +38,7 @@ namespace Digimon.Digimon.Scripts.Presentation.Presenter.ForcedEvent
 
             // 3.5.7日目の進化イベント
             _dateTimeEntity.OnDateChangedAsObservable()
-                .Where(date => date % 10 is 3 or 5 or 7)
+                .Where(date => date % 10 == 3 || date % 10 == 5 || date % 10 == 7)
                 .Subscribe(_ => _screenEntity.OnNext(Screens.Evolution));
 
             // 初日とイベント日以外は早朝イベント
@@ -48,7 +49,8 @@ namespace Digimon.Digimon.Scripts.Presentation.Presenter.ForcedEvent
 
         private async UniTaskVoid EveningAsync()
         {
-            if (_dateTimeEntity.Date % 10 is not 9 or 0 or 2 or 4 or 6)
+            var date = _dateTimeEntity.Date % 10;
+            if ( date != 9 && date != 2 && date != 4 && date != 6)
             {
                 _animationEntity.OnNext(MonsterReaction.Sleep);
                 await UniTask.Delay(TimeSpan.FromSeconds(3));
@@ -56,6 +58,7 @@ namespace Digimon.Digimon.Scripts.Presentation.Presenter.ForcedEvent
             }
             else
             {
+                _animationEntity.OnNext(MonsterReaction.Sleep);
                 await UniTask.Delay(TimeSpan.FromSeconds(3));
                 // イベント日はそのまま起床
                 _dateTimeEntity.Next();

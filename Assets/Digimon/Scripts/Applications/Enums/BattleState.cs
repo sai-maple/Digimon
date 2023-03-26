@@ -23,8 +23,8 @@ namespace Digimon.Digimon.Scripts.Applications.Enums
                 BattleState.Intro1 => BattleState.Intro2,
                 BattleState.Intro2 => BattleState.BattleStart,
                 BattleState.BattleStart => BattleState.BattleStart,
-                BattleState.MyTurn => BattleState.MyTurn,
-                BattleState.EnemyTurn => BattleState.EnemyTurn,
+                BattleState.MyTurn => BattleState.EnemyTurn,
+                BattleState.EnemyTurn => BattleState.MyTurn,
                 BattleState.Win => BattleState.Win2,
                 _ => throw new ArgumentOutOfRangeException(nameof(self), self, null)
             };

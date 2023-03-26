@@ -67,7 +67,7 @@ namespace Digimon.Digimon.Scripts.Presentation.Presenter.UI
 
             _winScreenView.OnTweetTapAsObservable()
                 .Subscribe(_ => UnityRoomTweet.TweetWithImage("kimi-to-deatta-hi",
-                    $"きみと出会った日を{_monsterTypeEntity.Value}日でクリアしたよ！", "unityroom"))
+                    $"きみと出会った日を{_dateTimeEntity.Date}日でクリアしたよ！", "unityroom"))
                 .AddTo(_disposable);
 
             _winScreenView.OnReturnTapAsObservable()

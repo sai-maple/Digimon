@@ -55,8 +55,10 @@ namespace Digimon.Digimon.Scripts.Domain.Entity
             if (textAsset != null) _message.OnNext(new StringReader(textAsset.text));
         }
 
-        public void Battle(BattleState state, int damage)
+        public async UniTaskVoid Battle(BattleState state, int damage)
         {
+            // メッセージの非表示と表示が同タイミングになってしまうので待つ
+            await UniTask.DelayFrame(5);
             // todo 名前決め se
             var name = state == BattleState.MyTurn ? "あなた" : "大精霊";
             var text = $"{name}の攻撃,damage,{damage}\n,play_se,Damage\n{damage}のダメージ,battle,";
