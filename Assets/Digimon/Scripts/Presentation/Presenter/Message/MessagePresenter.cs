@@ -16,22 +16,29 @@ namespace Digimon.Digimon.Scripts.Presentation.Presenter.Message
         private readonly MessageEntity _messageEntity;
         private readonly CommandUseCase _commandUseCase;
         private readonly MessageView _messageView;
+        private readonly AudioEntity _audioEntity;
 
         private readonly CompositeDisposable _disposable = new();
         private readonly CancellationTokenSource _cancellation = new();
 
-        public MessagePresenter(MessageEntity messageEntity, CommandUseCase commandUseCase, MessageView messageView)
+        public MessagePresenter(MessageEntity messageEntity, CommandUseCase commandUseCase, MessageView messageView,
+            AudioEntity audioEntity)
         {
             _messageEntity = messageEntity;
             _commandUseCase = commandUseCase;
             _messageView = messageView;
+            _audioEntity = audioEntity;
         }
 
         public void Initialize()
         {
             _messageView.Initialize();
             _messageEntity.OnReadFileAsObservable()
-                .Subscribe(reader => MessageAsync(reader).Forget());
+                .Subscribe(reader => MessageAsync(reader).Forget())
+                .AddTo(_disposable);
+            _audioEntity.OnSeVolumeAsObservable()
+                .Subscribe(_messageView.OnChangeVolume)
+                .AddTo(_disposable);
         }
 
         private async UniTaskVoid MessageAsync(StringReader reader)

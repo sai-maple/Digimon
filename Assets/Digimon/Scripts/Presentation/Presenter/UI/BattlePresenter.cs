@@ -16,6 +16,7 @@ namespace Digimon.Digimon.Scripts.Presentation.Presenter.UI
         private readonly MonsterTypeEntity _monsterTypeEntity;
         private readonly ScreenEntity _screenEntity;
         private readonly BattleEntity _battleEntity;
+        private readonly AudioEntity _audioEntity;
         private readonly BattleUseCase _battleUseCase;
         private readonly BattleView _battleView;
         private readonly ScreenView _screenView;
@@ -25,12 +26,13 @@ namespace Digimon.Digimon.Scripts.Presentation.Presenter.UI
         private readonly CancellationTokenSource _cancellation = new();
 
         public BattlePresenter(MonsterTypeEntity monsterTypeEntity, ScreenEntity screenEntity,
-            BattleEntity battleEntity, BattleUseCase battleUseCase, BattleView battleView, ScreenView screenView,
-            Screens screens)
+            BattleEntity battleEntity, AudioEntity audioEntity, BattleUseCase battleUseCase, BattleView battleView,
+            ScreenView screenView, Screens screens)
         {
             _monsterTypeEntity = monsterTypeEntity;
             _screenEntity = screenEntity;
             _battleEntity = battleEntity;
+            _audioEntity = audioEntity;
             _battleUseCase = battleUseCase;
             _battleView = battleView;
             _screenView = screenView;
@@ -83,7 +85,13 @@ namespace Digimon.Digimon.Scripts.Presentation.Presenter.UI
         {
             if (state == BattleState.Intro2) await _battleView.PresentAsync();
             if (state == BattleState.BattleStart) await _battleView.BattleStartAsync();
-            if (state is BattleState.Win or BattleState.Lose) await _battleView.BattleFinishAsync();
+            if (state is BattleState.Win or BattleState.Lose)
+            {
+                var se = state is BattleState.Win ? Se.Win : Se.Lose;
+                _audioEntity.PlaySe(se);
+                await _battleView.BattleFinishAsync();
+            }
+
             _battleUseCase.OnNext(state);
         }
 

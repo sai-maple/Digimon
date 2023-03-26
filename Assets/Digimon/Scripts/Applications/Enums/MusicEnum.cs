@@ -3,21 +3,20 @@ namespace Digimon.Digimon.Scripts.Applications.Enums
     public enum Bgm
     {
         Empty,
-        Main,
-        Battle,
-        Evolution,
-        Outro,
-        Epilogue, // お別れシーンで流すやつ
+        Main, //
+        Battle, //Epic( looped ending)
+        Epilogue, // お別れシーンで流すやつ RPS_Minimalism
     }
     
     public enum Se
     {
-        Tap,
+        Tap, // 
+        EvolutionStart,
         Evolution,
-        Rise,
+        Rise,　//
         Descent,
-        Damage,
-        Win,
-        Lose,
+        Damage,//
+        Win, //
+        Lose, //
     }
 }

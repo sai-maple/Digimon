@@ -13,6 +13,8 @@ namespace Digimon.Digimon.Scripts.Presentation.View.Message
         [SerializeField] private CanvasGroup _canvasGroup;
         [SerializeField] private TextMeshProUGUI _message;
         [SerializeField] private AudioSource _audioSource;
+        [SerializeField] private AudioClip presentClip;
+        [SerializeField] private AudioClip _tapClip;
         [SerializeField] private Button _nextButton;
         [SerializeField] private Vector3 _from;
         [SerializeField] private Vector3 _to;
@@ -27,8 +29,8 @@ namespace Digimon.Digimon.Scripts.Presentation.View.Message
 
         public async UniTask PresentAsync(CancellationToken token)
         {
-            // todo シュって音出したい?
             _message.text = "";
+            _audioSource.PlayOneShot(presentClip);
             await _messageBox.DOAnchorPos(_to, 0.2f).WithCancellation(token);
             if (token.IsCancellationRequested) return;
             _canvasGroup.interactable = true;
@@ -49,7 +51,7 @@ namespace Digimon.Digimon.Scripts.Presentation.View.Message
             _message.text = "";
             _audioSource.Play();
             var buttonTask = _nextButton.GetAsyncClickEventHandler();
-            var textTween = _message.DOText(message, message.Length * 0.1f).SetEase(Ease.Linear);
+            var textTween = _message.DOText(message, message.Length * 0.05f).SetEase(Ease.Linear);
 
             // ボタンクリックでメッセージ表示スキップ
             var index = await UniTask.WhenAny(buttonTask.OnClickAsync(), textTween.WithCancellation(cancellation.Token));
@@ -57,6 +59,7 @@ namespace Digimon.Digimon.Scripts.Presentation.View.Message
             if (token.IsCancellationRequested) return;
             if (index == 0)
             {
+                _audioSource.PlayOneShot(_tapClip);
                 cancellation.Cancel();
                 cancellation.Dispose();
                 cancellation = null;
@@ -69,6 +72,11 @@ namespace Digimon.Digimon.Scripts.Presentation.View.Message
             await buttonTask.OnClickAsync();
             cancellation?.Cancel();
             cancellation?.Dispose();
+        }
+
+        public void OnChangeVolume(float value)
+        {
+            _audioSource.volume = value;
         }
     }
 }

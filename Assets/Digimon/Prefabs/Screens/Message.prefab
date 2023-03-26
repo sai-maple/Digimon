@@ -114,6 +114,8 @@ MonoBehaviour:
   _canvasGroup: {fileID: 497368431536438470}
   _message: {fileID: 4642350499444486922}
   _audioSource: {fileID: 4642350499033453694}
+  presentClip: {fileID: 8300000, guid: e47f58008f72d43bd8f4c338b43f7294, type: 3}
+  _tapClip: {fileID: 8300000, guid: dadd8d77a3b7f4f0eab467d5fc2d182d, type: 3}
   _nextButton: {fileID: 4590251586030343489}
   _from: {x: 0, y: -400, z: 0}
   _to: {x: 0, y: 0, z: 0}
@@ -254,11 +256,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: fe13ac1c5e99e4a728fad710a10c42fc, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

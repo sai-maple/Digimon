@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7637465935148833169}
   - component: {fileID: 7637465935148833170}
   - component: {fileID: 7637465935148833171}
+  - component: {fileID: 9140570549129337784}
   m_Layer: 5
   m_Name: TrainingButton
   m_TagString: Untagged
@@ -141,6 +142,19 @@ MonoBehaviour:
   autoInjectGameObjects: []
   _button: {fileID: 7637465935148833170}
   _screen: 1
+--- !u!114 &9140570549129337784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7637465935148833261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13dd43ab85654ee38e46b0db3c5ed935, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _button: {fileID: 7637465935148833170}
 --- !u!1 &7637465935487895867
 GameObject:
   m_ObjectHideFlags: 0

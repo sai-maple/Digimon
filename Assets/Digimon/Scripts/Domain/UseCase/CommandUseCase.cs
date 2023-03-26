@@ -12,10 +12,11 @@ namespace Digimon.Digimon.Scripts.Domain.UseCase
         private readonly MonsterAnimationEntity _monsterAnimationEntity;
         private readonly StaminaEntity _staminaEntity;
         private readonly BattleEntity _battleEntity;
+        private readonly AudioEntity _audioEntity;
 
         public CommandUseCase(ScreenEntity screenEntity, StatusEntity statusEntity, MonsterTypeEntity monsterTypeEntity,
             DateTimeEntity dateTimeEntity, MonsterAnimationEntity monsterAnimationEntity, StaminaEntity staminaEntity,
-            BattleEntity battleEntity)
+            BattleEntity battleEntity, AudioEntity audioEntity)
         {
             _screenEntity = screenEntity;
             _statusEntity = statusEntity;
@@ -24,6 +25,7 @@ namespace Digimon.Digimon.Scripts.Domain.UseCase
             _monsterAnimationEntity = monsterAnimationEntity;
             _staminaEntity = staminaEntity;
             _battleEntity = battleEntity;
+            _audioEntity = audioEntity;
         }
 
         // csvからロードしたメッセージを表示して、次へをタップした時に2カラム目以降に記載されたコマンドを実行
@@ -78,8 +80,10 @@ namespace Digimon.Digimon.Scripts.Domain.UseCase
                     _screenEntity.OnNext(Screens.Menu);
                     break;
                 case "play_se":
+                    _audioEntity.PlaySe(parameter);
                     break;
                 case "play_bgm":
+                    _audioEntity.PlayBgm(parameter);
                     break;
                 // イベントの最後の行のコマンド
                 case "next":

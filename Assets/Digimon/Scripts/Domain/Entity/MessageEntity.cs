@@ -57,9 +57,9 @@ namespace Digimon.Digimon.Scripts.Domain.Entity
 
         public void Battle(BattleState state, int damage)
         {
-            // todo 名前決め
+            // todo 名前決め se
             var name = state == BattleState.MyTurn ? "あなた" : "大精霊";
-            var text = $"{name}の攻撃,damage,{damage}\n{damage}のダメージ,battle,";
+            var text = $"{name}の攻撃,damage,{damage}\n,play_se,Damage\n{damage}のダメージ,battle,";
             _message.OnNext(new StringReader(text));
         }
 

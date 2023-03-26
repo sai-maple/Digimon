@@ -17,6 +17,7 @@ namespace Digimon.Digimon.Scripts.Applications.Installer.Domain
             builder.Register<MonsterAnimationEntity>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
             builder.Register<StaminaEntity>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
             builder.Register<BattleEntity>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
+            builder.Register<AudioEntity>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
 
             builder.Register<CommandUseCase>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
             builder.Register<TrainingUseCase>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
