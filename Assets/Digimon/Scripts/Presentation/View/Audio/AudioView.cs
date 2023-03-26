@@ -29,7 +29,7 @@ namespace Digimon.Digimon.Scripts.Presentation.View.Audio
             {
                 foreach (var bgmAudio in _bgmAudios)
                 {
-                    bgmAudio.DOFade(0, 0.5f).OnComplete(() => bgmAudio.Stop());
+                    bgmAudio.DOFade(0, 1f).OnComplete(() => bgmAudio.Stop());
                 }
                 return;
             }
@@ -39,10 +39,10 @@ namespace Digimon.Digimon.Scripts.Presentation.View.Audio
             _bgmAudios[_index % 2].clip = clip.AudioClip;
             _bgmAudios[_index % 2].Play();
             _bgmAudios[_index % 2].volume = 0;
-            _bgmAudios[_index % 2].DOFade(_volume, 0.5f);
+            _bgmAudios[_index % 2].DOFade(_volume, 1f);
             _index++;
             var previous = _bgmAudios[_index % 2];
-            previous.DOFade(0, 0.5f).OnComplete(() => previous.Stop());
+            previous.DOFade(0, 1f).OnComplete(() => previous.Stop());
         }
 
         public void PlaySe(Se se)
