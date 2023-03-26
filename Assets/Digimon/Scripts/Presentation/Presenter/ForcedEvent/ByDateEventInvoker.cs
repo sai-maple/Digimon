@@ -54,7 +54,7 @@ namespace Digimon.Digimon.Scripts.Presentation.Presenter.ForcedEvent
             {
                 _animationEntity.OnNext(MonsterReaction.Sleep);
                 await UniTask.Delay(TimeSpan.FromSeconds(3));
-                _messageEntity.Evening().Forget();
+                _messageEntity.Evening();
             }
             else
             {

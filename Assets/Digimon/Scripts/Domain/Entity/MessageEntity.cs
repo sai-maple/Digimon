@@ -43,7 +43,7 @@ namespace Digimon.Digimon.Scripts.Domain.Entity
             ToEvent(fileName).Forget();
         }
 
-        public async UniTaskVoid Evening()
+        public void Evening()
         {
             var textAssets = Resources.LoadAll<TextAsset>($"Events/Events/Evening");
             var textAsset = textAssets[Random.Range(0, textAssets.Length)];
