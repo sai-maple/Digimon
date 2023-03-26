@@ -63,7 +63,7 @@ namespace Digimon.Digimon.Scripts.Domain.Entity
             _skillLevel.Value = Mathf.Max(_skillLevel.Value + skillLevel, 0);
         }
 
-        // 初日や対戦に敗北後、成長分を1/10に
+        // 初日や対戦に敗北後、成長分を1/2に
         public void Lose()
         {
             _baseHp += _bonusHp.Value / 2;

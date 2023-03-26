@@ -19,14 +19,16 @@ namespace Digimon.Digimon.Scripts.Domain.Entity
             _stamina.Value = Mathf.Clamp(_stamina.Value + value, 0, 100);
         }
 
-        public int ClashRate(TrainingType trainingType,int status)
+        public int ClashRate(TrainingType trainingType, int status)
         {
-            var bonus = trainingType == TrainingType.Hp ? 300 : 100;
-            var tough = _stamina.Value + (bonus - status);
+            var standard = trainingType == TrainingType.Hp ? 150 : 50;
+            var bonus = Mathf.Clamp(-1 * Mathf.Pow((status - standard) / 10f, 3), -20, 20);
+            var tough = _stamina.Value + bonus;
 
-            var rate = 100 - tough;
+            var rate = 50 - tough;
+
             rate = Mathf.Clamp(rate, 0, 100);
-            return rate;
+            return Mathf.FloorToInt(rate);
         }
 
         public void Dispose()
