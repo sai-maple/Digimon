@@ -65,11 +65,6 @@ namespace Digimon.Digimon.Scripts.Presentation.Presenter.UI
                 .Subscribe(_ => SceneManager.LoadScene("Ranking", LoadSceneMode.Additive))
                 .AddTo(_disposable);
 
-            _winScreenView.OnTweetTapAsObservable()
-                .Subscribe(_ => UnityRoomTweet.TweetWithImage("kimi-to-deatta-hi",
-                    $"きみと出会った日を{_dateTimeEntity.Date}日でクリアしたよ！", "unityroom"))
-                .AddTo(_disposable);
-
             _winScreenView.OnReturnTapAsObservable()
                 .Subscribe(_ => _confirmView.Present(() => SceneManager.LoadScene($"Tutorial")))
                 .AddTo(_disposable);
@@ -93,7 +88,7 @@ namespace Digimon.Digimon.Scripts.Presentation.Presenter.UI
 
         private async void PresentUI()
         {
-            await _winScreenView.Present();
+            await _winScreenView.Present(_dateTimeEntity.Date);
             RankingLoader.Instance.SendScoreAndShowRanking(_dateTimeEntity.Date);
         }
 

@@ -14,20 +14,25 @@ namespace Digimon.Digimon.Scripts.Presentation.View.UI
         [SerializeField] private Button _returnButton;
         [SerializeField] private CanvasGroup _canvasGroup;
         [SerializeField] private Vector3 _from;
+        private int _date;
 
         public IObservable<Unit> OnRankingTapAsObservable()
         {
             return _rankingButton.OnClickAsObservable();
         }
-        
-        public IObservable<Unit> OnTweetTapAsObservable()
-        {
-            return _tweetButton.OnClickAsObservable();
-        }
-        
+
         public IObservable<Unit> OnReturnTapAsObservable()
         {
             return _returnButton.OnClickAsObservable();
+        }
+
+        private void Awake()
+        {
+            _tweetButton.onClick.AddListener(() =>
+            {
+                StartCoroutine(
+                    TweetWithScreenShot.TweetManager.TweetWithScreenShot($"きみと出会った日を{_date}日でクリアしたよ！"));
+            });
         }
 
         public void Initialize()
@@ -38,8 +43,9 @@ namespace Digimon.Digimon.Scripts.Presentation.View.UI
             _canvasGroup.blocksRaycasts = false;
         }
 
-        public async UniTask Present()
+        public async UniTask Present(int date)
         {
+            _date = date;
             _canvasGroup.DOFade(1, 0.5f).ToUniTask().Forget();
             await transform.DOLocalMove(Vector3.zero, 0.5f);
             _canvasGroup.interactable = true;
