@@ -1,6 +1,6 @@
 namespace Digimon.Digimon.Scripts.Applications.Static
 {
-    public static class MonsterName
+    public static class StaticMonsterName
     {
         public static string Name = "ノリン";
     }

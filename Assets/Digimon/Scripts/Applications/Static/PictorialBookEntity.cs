@@ -14,6 +14,8 @@ namespace Digimon.Digimon.Scripts.Applications.Static
             {
                 Book.Add(name, false);
             }
+
+            Book[Enums.MonsterName.Baby] = true;
         }
 
         public void Evolution(Enums.MonsterName name)

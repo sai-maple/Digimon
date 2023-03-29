@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace Digimon.Digimon.Scripts.Presentation.Presenter.PictureBook
+namespace Digimon.Digimon.Scripts.Presentation.Presenter.PictorialBook
 {
     public sealed class LoadPictureBookButton : MonoBehaviour
     {
@@ -14,8 +14,8 @@ namespace Digimon.Digimon.Scripts.Presentation.Presenter.PictureBook
             _button.onClick.AddListener(() =>
             {
                 if (Enumerable.Range(0, SceneManager.sceneCount).Select(i => SceneManager.GetSceneAt(i).name)
-                    .Any(n => n == "PictureBook")) return;
-                SceneManager.LoadScene($"PictureBook", LoadSceneMode.Additive);
+                    .Any(n => n == "PictorialBook")) return;
+                SceneManager.LoadScene($"PictorialBook", LoadSceneMode.Additive);
             });
         }
     }

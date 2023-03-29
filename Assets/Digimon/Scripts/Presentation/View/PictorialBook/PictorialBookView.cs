@@ -4,14 +4,14 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Digimon.Digimon.Scripts.Presentation.View
+namespace Digimon.Digimon.Scripts.Presentation.View.PictorialBook
 {
-    public sealed class PictureBookView : MonoBehaviour
+    public sealed class PictorialBookView : MonoBehaviour
     {
         [SerializeField] private Transform _content;
         [SerializeField] private TextMeshProUGUI _text;
 
-        public PictureBookView Create(Transform content)
+        public PictorialBookView Create(Transform content)
         {
             return Instantiate(this, content);
         }
@@ -21,8 +21,9 @@ namespace Digimon.Digimon.Scripts.Presentation.View
             _text.text = EvolutionTypeExtension.GetType(monsterName).GetLabel();
             var fileName = $"Monsters/{monsterName}";
             var prefab = await Resources.LoadAsync(fileName) as GameObject;
+            var monster = Instantiate(prefab, _content);
             if (isReleased) return;
-            var monsterTextures = Instantiate(prefab, _content).GetComponentsInChildren<Image>();
+            var monsterTextures = monster.GetComponentsInChildren<Image>();
             foreach (var texture in monsterTextures)
             {
                 texture.color = new Color(0.08f, 0.08f, 0.08f);

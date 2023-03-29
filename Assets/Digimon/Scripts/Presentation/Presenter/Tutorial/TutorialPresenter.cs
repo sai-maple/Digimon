@@ -29,8 +29,8 @@ namespace Digimon.Digimon.Scripts.Presentation.Presenter.Tutorial
             _mask.DOFade(0, 2).ToUniTask().Forget();
             _confirmView.gameObject.SetActive(false);
             _confirmButton.onClick.AddListener(() => _confirmView.gameObject.SetActive(true));
-            _text.text = $"「{MonsterName.Name}」でいい？";
-            _inputField.text = MonsterName.Name;
+            _text.text = $"「{StaticMonsterName.Name}」でいい？";
+            _inputField.text = StaticMonsterName.Name;
             _inputField.onEndEdit.AddListener(text => _text.text = $"「{text}」でいい？");
             _canvasGroup.alpha = 0;
             _canvasGroup.interactable = false;
@@ -54,7 +54,7 @@ namespace Digimon.Digimon.Scripts.Presentation.Presenter.Tutorial
             _canvasGroup.interactable = false;
             _canvasGroup.blocksRaycasts = false;
 
-            MonsterName.Name = _inputField.text;
+            StaticMonsterName.Name = _inputField.text;
             glow.DOFade(0, 1).ToUniTask(cancellationToken: token).Forget();
             // よろしくね
             textAsset = await ToEvent("Events/Events/Tutorial/Tutorial2");

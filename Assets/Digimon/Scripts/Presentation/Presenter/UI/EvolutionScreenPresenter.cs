@@ -2,6 +2,7 @@ using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using Digimon.Digimon.Scripts.Applications.Enums;
+using Digimon.Digimon.Scripts.Applications.Static;
 using Digimon.Digimon.Scripts.Domain.Entity;
 using Digimon.Digimon.Scripts.Presentation.View.UI;
 using UniRx;
@@ -15,6 +16,7 @@ namespace Digimon.Digimon.Scripts.Presentation.Presenter.UI
         private readonly MonsterTypeEntity _monsterTypeEntity;
         private readonly MessageEntity _messageEntity;
         private readonly EvolutionView _evolutionView;
+        private readonly PictorialBookEntity _pictorialBookEntity;
         private readonly ScreenView _screenView;
         private readonly Screens _screens;
 
@@ -22,12 +24,14 @@ namespace Digimon.Digimon.Scripts.Presentation.Presenter.UI
         private readonly CancellationTokenSource _cancellation = new();
 
         public EvolutionScreenPresenter(ScreenEntity screenEntity, MonsterTypeEntity monsterTypeEntity,
-            MessageEntity messageEntity, EvolutionView evolutionView, ScreenView screenView, Screens screens)
+            MessageEntity messageEntity, EvolutionView evolutionView, PictorialBookEntity pictorialBookEntity,
+            ScreenView screenView, Screens screens)
         {
             _screenEntity = screenEntity;
             _monsterTypeEntity = monsterTypeEntity;
             _messageEntity = messageEntity;
             _evolutionView = evolutionView;
+            _pictorialBookEntity = pictorialBookEntity;
             _screenView = screenView;
             _screens = screens;
         }
@@ -66,6 +70,7 @@ namespace Digimon.Digimon.Scripts.Presentation.Presenter.UI
 
         private async UniTaskVoid EvolutionAsync(MonsterName monsterName)
         {
+            _pictorialBookEntity.Evolution(monsterName);
             await _evolutionView.EvolutionAsync(monsterName);
             _messageEntity.ToEvent(_monsterTypeEntity.EvolutionFile(false)).Forget();
         }

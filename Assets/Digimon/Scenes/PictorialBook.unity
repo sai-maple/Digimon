@@ -372,7 +372,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &146513060
 RectTransform:
@@ -424,12 +424,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentReference:
-    TypeName: Digimon.Digimon.Scripts.Applications.Installer.Domain.PictureBookInstaller
+    TypeName: 
   autoRun: 1
   autoInjectGameObjects: []
   _fadeView: {fileID: 146513061}
-  _content: {fileID: 2199602094348621822}
+  _content: {fileID: 2143258436}
   _returnButton: {fileID: 625065141}
+  _prefab: {fileID: 3623010143912317711, guid: 2ce1eb771b720447ea0d6bb7a24c0a3e, type: 3}
 --- !u!1 &374805605
 GameObject:
   m_ObjectHideFlags: 0
