@@ -10,8 +10,8 @@ namespace Digimon.Digimon.Scripts.Domain.Entity
         private readonly ReactiveProperty<Bgm> _bgm = new(Bgm.Main);
         private readonly Subject<Se> _se = new();
 
-        private readonly ReactiveProperty<float> _volumeBgm = new(0.4f);
-        private readonly ReactiveProperty<float> _volumeSe = new(0.6f);
+        private readonly ReactiveProperty<float> _volumeBgm = new(0.3f);
+        private readonly ReactiveProperty<float> _volumeSe = new(0.5f);
 
         public float VolumeBgm => _volumeBgm.Value;
         public float VolumeSe => _volumeSe.Value;
