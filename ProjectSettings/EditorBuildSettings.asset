@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/AssetStoreTools/naichilab/unity-simple-ranking/Scenes/Ranking.unity
     guid: 152244f5855414ac4a3874f14efa583c
+  - enabled: 1
+    path: Assets/Digimon/Scenes/PictureBook.unity
+    guid: d24f9ab2b905e4ec19b54da6caecb2a0
   m_configObjects: {}

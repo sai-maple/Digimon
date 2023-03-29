@@ -1113,7 +1113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentReference:
-    TypeName: 
+    TypeName: Digimon.Digimon.Scripts.Applications.Installer.Domain.PictureBookInstaller
   autoRun: 1
   autoInjectGameObjects: []
 --- !u!4 &1427599709
@@ -2572,6 +2572,10 @@ PrefabInstance:
     - target: {fileID: 1800301406251055535, guid: 7cf76baf6293c45259538e568ab4ff71, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 169.99994
+      objectReference: {fileID: 0}
+    - target: {fileID: 3960389439312340219, guid: 7cf76baf6293c45259538e568ab4ff71, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 839.99994
       objectReference: {fileID: 0}
     - target: {fileID: 5488989075904200416, guid: 7cf76baf6293c45259538e568ab4ff71, type: 3}
       propertyPath: m_AnchoredPosition.x
