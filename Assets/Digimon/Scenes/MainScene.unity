@@ -1113,7 +1113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentReference:
-    TypeName: Digimon.Digimon.Scripts.Applications.Installer.Domain.PictureBookInstaller
+    TypeName: 
   autoRun: 1
   autoInjectGameObjects: []
 --- !u!4 &1427599709
